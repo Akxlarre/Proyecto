@@ -1,3 +1,11 @@
+a .card img {
+    transition: transform 0.3s ease; /* Transición suave */
+}
+
+a .card:hover img {
+    transform: scale(1.2); /* Aumenta el tamaño de la imagen al 120% */
+}
+
 
 /*carousel*/
 .carousel-item img {
@@ -8,11 +16,18 @@
 .boton-sabermas {
     background-color: transparent;
     border: none;
+    transition: transform 0.3s ease; /* Transición suave */
+
 }
 .boton-sabermas a {
     color: #FFFFFF;
     text-decoration: none;
 }
+
+.boton-sabermas:hover {
+    transform: scale(1.2); /* Aumenta el tamaño del texto al 120% */
+}
+
 
 /*cards*/
 .lista-categorias {
@@ -26,10 +41,5 @@
     width: 7rem; /* Para mantener la proporción de aspecto */
 }
 
-/*footer*/
-footer {
-    background-color: #2B2B2B;
-    color: #FFFFFF;
-    text-align: start;
-    width: 100%;
-}
+
+

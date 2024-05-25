@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Inicio{% endblock %} 
 {% block contenido %}
+<link rel="stylesheet" href="{% static 'Druids/css/index.css' %}" />
 <main>
   <!-- Carousel -->
   <section id="section-1">
@@ -78,11 +79,11 @@
     </div>
   </section>
   <!--Categoria de productos-->
-  <section id="section-2">
+  <section id="section-2" class="my-5">
     <div class="container lista-categorias">
       <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-4">
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/arbol.svg' %}"
@@ -96,7 +97,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/arbusto.svg' %}"
@@ -110,7 +111,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/cactus.svg' %}"
@@ -124,7 +125,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/flores.svg' %}"
@@ -138,7 +139,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/implementos.svg' %}"
@@ -152,7 +153,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/cuidados.svg' %}"
@@ -166,7 +167,7 @@
           </a>
         </div>
         <div class="col">
-          <a href="{% url 'listadoProductos' %}">
+          <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;" class="sinSubrayado">
             <div class="card shadow">
               <img
                 src="{% static 'Druids/img/enredaderas.svg' %}"
