@@ -3,6 +3,8 @@
 {% block title %}pago{% endblock %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pago.css' %}">
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyY3bxIioBHabCMOeT1HjfAFjC1kdA3eU&libraries=places&callback=initMap">
+</script>
     <main>
         <!--boton de volver atras-->
         <section class="d-flex justify-content-start">
@@ -66,7 +68,7 @@
                 </form>
             </div>
             <div class="col-md-7 col-lg-8">
-                <form class="needs-validation" id="form-pago">
+                <form class="needs-validation" id="form-pago" action="{% url 'pagoexitoso' %}" method="">
                     <div class="row g-3">
                         <div class="col-sm-6 form-group">
                             <label for="Primer-nombre-pago" class="form-label">Nombre</label>
@@ -162,7 +164,7 @@
                         </div>
                     </div>
                     <hr class="my-4">
-                    <button type="submit" class="w-100 btn btn-primary btn-lg" id="boton-pago">Continuar con el
+                    <button type="submit" class="w-100 btn btn-primary btn-lg">Continuar con el
                         pago</button>
                 </form>
             </div>

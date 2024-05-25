@@ -17,9 +17,6 @@ const regionesYComunas = {
     "Región de Magallanes": ["Punta Arenas", "Torres del Paine", "Porvenir", "Primavera", "Timaukel", "Natales", "San Gregorio"]
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Pago.js cargado correctamente");
-});
 
 // Función para cargar las comunas según la región seleccionada
 function cargarComunas(regionSeleccionada) {
