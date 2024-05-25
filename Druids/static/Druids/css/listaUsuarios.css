@@ -1,0 +1,51 @@
+
+.boton-volver img{
+    width: 2rem;
+    height: 2rem;
+}
+.imagenPerfil{
+   max-width: 6rem;
+}
+.buscador{
+    margin-left: 20vw;
+    max-width: 50vw;
+}
+@media screen and (max-width: 576px) {
+    .buscador{
+        margin-left: 10vw;
+        max-width: 70vw;
+    }
+}
+@media screen and (max-width: 768px) {
+ 
+    .contenedor-informacion div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    .botones-usuarios div {
+        
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+       
+    }
+    .contenedor-imagen{
+        display: flex;
+        justify-content: center;
+    }
+    .imagenPerfil{
+        max-width: 10rem;
+    }
+    
+}
+
+/*footer*/
+footer {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+    text-align: start;
+    width: 100%;
+}

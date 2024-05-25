@@ -1,0 +1,91 @@
+/* Navbar */
+.navbar {
+    background-color: #0A3400; 
+     /* Para que el navbar esté por encima de los demás elementos , lo defino asi para evitar problemas con los modal*/
+}
+.navbar-brand {
+    font-family: 'rowdies', cursive;
+    font-size: 3rem;
+    margin: auto; /* Para centrar el logo */
+    color: #FFFFFF;
+}
+
+.shopping-cart {
+    width: 2rem; /* Para que el icono no se vea tan grande */
+    margin: 0 1rem; /* Para separar el icono del texto */
+}
+
+.profile {
+    width: 2rem;
+}
+
+/* modal */
+.modal{
+    z-index: 15000; /* lo defino mas alto que el navbar para que no se superponga */  
+}
+
+.modal-header {
+    background-color: #0A3400;
+    color: #FFFFFF;
+    display: flex;
+}
+.modal-title {
+    font-family: 'rowdies', cursive;
+    font-size: 2rem;
+    /*centrar el titulo del modal*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.requerimiento {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 0.7rem;
+}
+.validador {
+    width: 1rem;
+    margin-left: 0.5rem;
+    position: relative;
+    top: -0.5rem;
+}
+.ver-contraseña {
+    width: 1.5rem;
+    position: relative;
+}
+#boton-ver-contraseña{
+    /* al precionar el boton no tenga un borde */
+    border: none;
+    background-color: transparent;
+}
+#boton-ver-contraseña-confirmar{
+    /* al precionar el boton no tenga un borde */
+    border: none;
+    background-color: transparent;
+}
+
+.form-check-input{
+    width: 1.2rem;
+    border-color: black;
+}
+.form-control{
+    border-color: black;
+}
+
+.form-select{
+    border-color: black;
+}
+
+label{
+    color: black;
+}
+
+#text-boton-inicio-sesion{
+    color: white;
+    font-size: 0.8rem;
+
+}
+#img-iniciar-sesion{
+    width: 2rem;
+}

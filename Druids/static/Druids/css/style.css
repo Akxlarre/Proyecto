@@ -1,0 +1,35 @@
+
+/*carousel*/
+.carousel-item img {
+    max-height: 90vh;  /* para que se vea proporcional al espacio de la navbar */
+    width: auto; /* Para mantener la proporción de aspecto */
+  }
+
+.boton-sabermas {
+    background-color: transparent;
+    border: none;
+}
+.boton-sabermas a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/*cards*/
+.lista-categorias {
+    margin-top: 3rem; /* Para separar las categorías del carousel */
+    
+}
+.card img {
+    display: block; /* Para centrar la imagen */
+    margin: 2rem auto; 
+    max-height: 10rem; /* Para que las imágenes no se vean tan grandes */
+    width: 7rem; /* Para mantener la proporción de aspecto */
+}
+
+/*footer*/
+footer {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+    text-align: start;
+    width: 100%;
+}

@@ -1,0 +1,20 @@
+
+.boton-volver img{
+    width: 2rem;
+    height: 2rem;
+}
+
+.imagen-perfil {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin: 1rem auto;
+}
+
+/*footer*/
+footer {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+    text-align: start;
+    width: 100%;
+}

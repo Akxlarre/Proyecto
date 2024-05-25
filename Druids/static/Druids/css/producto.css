@@ -1,0 +1,44 @@
+
+/*carousel*/
+
+.contenedor-carousel{
+    max-width: 30vw;
+}
+.imagen-carousel{
+    width: 30vw;
+}
+.contenedor-selectores{
+    width: 30vw;
+}
+.selector-imagen{
+    max-width: 4rem;
+}
+@media (max-width: 768px){
+    .contenedor-carousel{
+        max-width: 90vw;
+    }
+    .imagen-carousel{
+        width: 90vw;
+    }
+    .contenedor-selectores{
+        width: 90vw;
+    }
+    .selector-imagen{
+        max-width: 5rem;
+    }
+}
+.boton-volver img{
+    width: 2rem;
+    height: 2rem;
+}
+/*descripcion*/
+.Descripcion{
+    border-top: gray 1px solid;
+}
+/*footer*/
+footer {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+    text-align: start;
+    width: 100%;
+}

@@ -1,0 +1,30 @@
+
+.contenedor-tarjeta{
+    border: transparent;
+}
+
+.boton-volver img{
+    width: 2rem;
+    height: 2rem;
+}
+.form-check-input{
+    width: 1.2rem;
+    border-color: black;
+}
+.form-control{
+    border-color: black;
+}
+.form-select{
+    border-color: black;
+}
+label{
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+/*footer*/
+footer {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+    text-align: start;
+    width: 100%;
+}
