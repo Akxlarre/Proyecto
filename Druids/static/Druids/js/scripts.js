@@ -88,10 +88,3 @@ $(document).ready(function() {
         }
     });
 } );
-
-$(document).ready(function() {
-    $('#formulario-carrito').submit(function(event) {
-        window.location.href = 'pago.html';
-        event.preventDefault();
-    });
-});
