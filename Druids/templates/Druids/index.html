@@ -1,95 +1,69 @@
 {% extends 'Druids/base.html' %}
 {% load static %}
-{% block title %}Inicio{% endblock %} 
+{% block title %}Inicio{% endblock %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/index.css' %}" />
 <main>
   <!-- Carousel -->
   <section id="section-1">
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-      <!-- Indicators/dots -->
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#demo"
-          data-bs-slide-to="0"
-          class="active"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#demo"
-          data-bs-slide-to="1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#demo"
-          data-bs-slide-to="2"
-        ></button>
-      </div>
-
-      <!-- The slideshow/carousel -->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img
-            src="{% static 'Druids/img/image.jpg' %}"
-            alt="imagen"
-            class="d-block w-100 img-fluid"
-          />
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <img id="imagen-item-1" src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item" alt="Imagen 1">
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+              <h1 class="titulo-item" id="tituloItem">¡Bienvenido a Druids!</h1>
+              <p class="texto-item" id="textoItem">Encuentra todo lo que necesitas para tu jardín<br>Decora tus espacios
+                con nuestra
+                amplia variedad de plantas</p>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <img
-            src="{% static 'Druids/img/image.jpg' %}"
-            alt="imagen"
-            class="d-block w-100 img-fluid"
-          />
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <img src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item" alt="Imagen 2">
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+              <h1 class="titulo-item">¡Bienvenido a Druids!</h1>
+              <p class="texto-item">Encuentra todo lo que necesitas para tu jardín<br>Decora tus espacios con nuestra
+                amplia variedad de plantas</p>
+            </div>
+          </div>
         </div>
         <div class="carousel-item">
-          <img
-            src="{% static 'Druids/img/image.jpg' %}"
-            alt="imagen"
-            class="d-block w-100 img-fluid"
-          />
+          <div class="row">
+            <div class="col d-flex justify-content-center align-items-center">
+              <img src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item" alt="Imagen 2">
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+              <h1 class="titulo-item">¡Bienvenido a Druids!</h1>
+              <p class="texto-item">Encuentra todo lo que necesitas para tu jardín<br>Decora tus espacios con nuestra
+                amplia variedad de plantas</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="carousel-caption">
-        <button class="boton-sabermas">
-          <a class="display-4" href="#section-2">Saber Mas</a>
-        </button>
-        <p class="fs-4">Conoce nuestra categoria de productos</p>
-      </div>
-
-      <!-- Left and right controls/icons -->
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#demo"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon"></span>
-      </button>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
     </div>
   </section>
   <!--Categoria de productos-->
-  <section id="section-2" class="my-5">
+  <section id="section-2" class="mt-5">
     <div class="container lista-categorias">
       <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-4">
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/arbol.svg' %}"
-                class="card-img-top"
-                alt="Arbol"
-              />
+              <img src="{% static 'Druids/img/arbol.svg' %}" class="card-img-top" alt="Arbol" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Arboles</h5>
               </div>
@@ -99,11 +73,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/arbusto.svg' %}"
-                class="card-img-top"
-                alt="Arbusto"
-              />
+              <img src="{% static 'Druids/img/arbusto.svg' %}" class="card-img-top" alt="Arbusto" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Arbustos</h5>
               </div>
@@ -113,11 +83,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/cactus.svg' %}"
-                class="card-img-top"
-                alt="Cactus"
-              />
+              <img src="{% static 'Druids/img/cactus.svg' %}" class="card-img-top" alt="Cactus" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Cactus</h5>
               </div>
@@ -127,11 +93,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/flores.svg' %}"
-                class="card-img-top"
-                alt="flores"
-              />
+              <img src="{% static 'Druids/img/flores.svg' %}" class="card-img-top" alt="flores" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Flores</h5>
               </div>
@@ -141,11 +103,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/implementos.svg' %}"
-                class="card-img-top"
-                alt="implementos"
-              />
+              <img src="{% static 'Druids/img/implementos.svg' %}" class="card-img-top" alt="implementos" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Implementos</h5>
               </div>
@@ -155,11 +113,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/cuidados.svg' %}"
-                class="card-img-top"
-                alt="Cuidados"
-              />
+              <img src="{% static 'Druids/img/cuidados.svg' %}" class="card-img-top" alt="Cuidados" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Cuidados</h5>
               </div>
@@ -169,11 +123,7 @@
         <div class="col">
           <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;" class="sinSubrayado">
             <div class="card shadow">
-              <img
-                src="{% static 'Druids/img/enredaderas.svg' %}"
-                class="card-img-top"
-                alt="Herramientas"
-              />
+              <img src="{% static 'Druids/img/enredaderas.svg' %}" class="card-img-top" alt="Herramientas" />
               <div class="card-body text-center">
                 <h5 class="card-title fs-3">Enredaderas</h5>
               </div>
@@ -184,4 +134,5 @@
     </div>
   </section>
 </main>
+<script src="{% static 'Druids/js/index.js' %}"></script>
 {% endblock %}
