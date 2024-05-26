@@ -9,9 +9,6 @@ a .card:hover img {
 
 /*carousel*/
 
-main {
-    background-color: #e5e7da; /* Color de fondo */
-}
 .carousel,
 .carousel-inner {
     height: 90vh; /* Altura inicial del carrusel */
@@ -74,7 +71,31 @@ main {
     text-align: center;
     position: absolute;
     top: 50%;
+    margin-right: 1rem;
     font-size: 2.5vw; /* Tamaño de fuente relativo al ancho de la ventana */
+}
+.boton-sabermas {
+    background-color: transparent;
+    border: none;
+}
+.boton-sabermas a {
+    color: #333333;
+    text-decoration: none;
+}
+
+#boton-saber-mas a {
+    font-size: 4.6vw;
+    transition: height 0.5s ease; /* Transición suave de 0.5s */ 
+}
+#boton-saber-mas a:hover {
+    color: #3a633a;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    transition: height 0.5s ease; /* Transición suave de 0.5s */
+    transform: scale(1.1); 
+}
+#texto-saber-mas {
+    font-size: 2.5vw; 
 }
 
 /* Ajustes específicos con consultas de medios */
@@ -85,6 +106,12 @@ main {
     .texto-item {
         font-size: 2.2vw; /* Ajuste para pantallas grandes */
     }
+    #boton-saber-mas a {
+        font-size: 4.5vw; 
+    }
+    #texto-saber-mas {
+        font-size: 2.2vw; 
+    }
 }
 
 @media (max-width: 992px) {
@@ -94,6 +121,13 @@ main {
     .texto-item {
         font-size: 2vw; /* Ajuste para pantallas medianas */
     }
+    #boton-saber-mas a {
+        font-size: 4vw; 
+    }
+    #texto-saber-mas {
+        font-size: 2vw; 
+    }
+    
 }
 
 @media (max-width: 768px) {
@@ -102,6 +136,12 @@ main {
     }
     .texto-item {
         font-size: 1.8vw; /* Ajuste para pantallas pequeñas */
+    }
+    #boton-saber-mas a {
+        opacity: 0; 
+    }
+    #texto-saber-mas {
+        opacity: 0 !important;
     }
 }
 
@@ -112,10 +152,16 @@ main {
     .texto-item {
         font-size: 1.8vw; /* Ajuste para pantallas muy pequeñas */
     }
+    #boton-saber-mas a {
+        opacity: 0;
+    }
+    #texto-saber-mas {
+        opacity: 0 !important;
+    }
 }
 
 /* Estilos iniciales para ocultar los elementos */
-#tituloItem, #textoItem, #imagen-item-1 {
+#tituloItem, #textoItem, #imagen-item-1, #boton-saber-mas , #texto-saber-mas {
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
@@ -143,20 +189,29 @@ main {
     z-index: 1;
 }
 
+.carousel-caption p {
+    color: #333333;
+}
+
+
 /*cards*/
 .card{
-    background-color: #cdf0d3;
+    background-color: #ffedd6;
 }
 .lista-categorias {
     margin-top: 3rem; /* Para separar las categorías del carousel */
     
 }
+
 .card img {
     display: block; /* Para centrar la imagen */
-    margin: 2rem auto; 
+    margin: 3rem auto; 
     max-height: 10rem; /* Para que las imágenes no se vean tan grandes */
     width: 7rem; /* Para mantener la proporción de aspecto */
 }
 
+.separador{
+    height: 3rem; /* Para separar las categorías de footer */
+}
 
 

@@ -11,7 +11,8 @@
         <div class="carousel-item active">
           <div class="row">
             <div class="col d-flex justify-content-center align-items-center">
-              <img id="imagen-item-1" src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item" alt="Imagen 1">
+              <img id="imagen-item-1" src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item"
+                alt="Imagen 1">
             </div>
             <div class="col d-flex align-items-center justify-content-center">
               <h1 class="titulo-item" id="tituloItem">¡Bienvenido a Druids!</h1>
@@ -27,7 +28,7 @@
               <img src="{% static 'Druids/img/cactus.png' %}" class="d-block w-100 imagen-item" alt="Imagen 2">
             </div>
             <div class="col d-flex align-items-center justify-content-center">
-              <h1 class="titulo-item">Cactus</h1>
+              <h1 class="titulo-item">CACTUS</h1>
               <p class="texto-item">Encuentra los cactus más hermosos y variados<br> Ideales para decorar tus espacios
                 con un toque de naturaleza</p>
             </div>
@@ -36,15 +37,19 @@
         <div class="carousel-item">
           <div class="row">
             <div class="col d-flex justify-content-center align-items-center">
-              <img src="{% static 'Druids/img/plant.png' %}" class="d-block w-100 imagen-item" alt="Imagen 2">
+              <img src="{% static 'Druids/img/arbol.png' %}" class="d-block w-100 imagen-item" alt="Imagen 2">
             </div>
             <div class="col d-flex align-items-center justify-content-center">
-              <h1 class="titulo-item">¡Bienvenido a Druids!</h1>
-              <p class="texto-item">Encuentra todo lo que necesitas para tu jardín<br>Decora tus espacios con nuestra
-                amplia variedad de plantas</p>
+              <h1 class="titulo-item">ARBOLES</h1>
+              <p class="texto-item">Aqui pordras encontrar un amplio catalogo de arboles<br>Planta felicidad en tu hogar
+              </p>
             </div>
           </div>
         </div>
+      </div>
+      <div class="carousel-caption">
+        <button class="boton-sabermas" id="boton-saber-mas"><a class="display-4" href="#section-2">Saber Mas</a></button>
+        <p id="texto-saber-mas" class="fs-4">Conoce nuestra categoria de productos</p>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -133,6 +138,8 @@
       </div>
     </div>
   </section>
+  <div class="separador">
+  </div>
 </main>
 <script src="{% static 'Druids/js/index.js' %}"></script>
 {% endblock %}

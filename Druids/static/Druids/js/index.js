@@ -15,3 +15,12 @@ setTimeout(function() {
     imagenItem.classList.add('visible');
 }, 2100);
 
+setTimeout(function() {
+    var sabermas = document.getElementById('boton-saber-mas');
+    sabermas.classList.add('visible');
+}, 2500)
+
+setTimeout(function() {
+    var textoSaberMas = document.getElementById('texto-saber-mas');
+    textoSaberMas.classList.add('visible');
+}, 2500);
