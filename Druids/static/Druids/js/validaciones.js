@@ -1,5 +1,6 @@
 
 // requerimientos de la contraseña
+// registrar usuario y agregar usuario
 $(document).ready(function() {
     $('#password-registro').on('input blur', function() {
         var password = $(this).val();
@@ -13,10 +14,10 @@ $(document).ready(function() {
         function verificarRequisito(regex, elemento) {
             if (regex.test(password)) {
                 elemento.removeClass('text-danger').addClass('text-success');
-                elemento.find('.validador').attr('src', 'img/complete-svgrepo-com.svg');
+                elemento.find('.validador').attr('src', completeSvgUrl);
                 } else {
                 elemento.removeClass('text-success').addClass('text-danger');
-                elemento.find('.validador').attr('src', 'img/empty-svgrepo-com.svg');
+                elemento.find('.validador').attr('src', emptySvgUrl);
             }
         }
 
@@ -28,6 +29,37 @@ $(document).ready(function() {
         verificarRequisito(especialRegex, $('#requerimiento-especial'));
     });
 });
+
+$(document).ready(function() {
+    $('#password-agregar-usuario').on('input blur', function() {
+        var password = $(this).val();
+        var longitudRegex = /^.{8,}$/;
+        var mayusculaRegex = /[A-Z]/;
+        var minusculaRegex = /[a-z]/;
+        var numeroRegex = /\d/;
+        var especialRegex = /[^\da-zA-Z]/;
+
+        // Función para verificar si un requisito está cumplido y cambiar la clase de color
+        function verificarRequisito(regex, elemento) {
+            if (regex.test(password)) {
+                elemento.removeClass('text-danger').addClass('text-success');
+                elemento.find('.validador').attr('src', completeSvgUrl);
+                } else {
+                elemento.removeClass('text-success').addClass('text-danger');
+                elemento.find('.validador').attr('src', emptySvgUrl);
+            }
+        }
+
+        // Verificar cada requisito y cambiar clase de color según corresponda
+        verificarRequisito(longitudRegex, $('#requerimiento-longitud-agregar-usuario'));
+        verificarRequisito(mayusculaRegex, $('#requerimiento-mayuscula-agregar-usuario'));
+        verificarRequisito(minusculaRegex, $('#requerimiento-minuscula-agregar-usuario'));
+        verificarRequisito(numeroRegex, $('#requerimiento-numero-agregar-usuario'));
+        verificarRequisito(especialRegex, $('#requerimiento-especial-agregar-usuario'));
+    });
+});
+    
+
 
 //nuevos metodos de validacion
 
@@ -579,6 +611,54 @@ $(document).ready(function () {
             },
             "direccion-perfil": {
                 required: "Por favor ingresa tu dirección",
+            },
+        }
+    });
+});
+
+// Validar formulario agregar usuario
+
+$(document).ready(function () {
+    $("#formulario-agregar-usuario").validate({
+        rules: {
+            "nombre-agregar-usuario": {
+                required: true,
+                sinEspaciosConsecutivos: true,
+                sinEspacioInicioFin: true,
+                minlength: 3,
+                maxlength: 20,
+                soloLetras: true,
+            },
+            "correo-agregar-usuario": {
+                required: true,
+                sinEspacioInicioFin: true,
+                email: true,
+                emailConDominio: true,
+            },
+            "password-agregar-usuario": {
+                required: true,
+                strongPassword: true,
+            },
+            "rol-agregar-usuario": {
+                required: true,
+                seleccionDropdown: true,
+            },
+        },
+        messages: {
+            "nombre-agregar-usuario": {
+                required: "Por favor ingresa el nombre del usuario",
+                minlength: "El nombre debe tener al menos 3 caracteres",
+                maxlength: "El nombre debe tener como máximo 20 caracteres"
+            },
+            "correo-agregar-usuario": {
+                required: "Por favor ingresa el correo electrónico del usuario",
+                email: "Por favor ingresa un correo electrónico válido"
+            },
+            "password-agregar-usuario": {
+                required: "Por favor ingresa la contraseña del usuario",
+            },
+            "rol-agregar-usuario": {
+                required: "Por favor selecciona un rol",
             },
         }
     });

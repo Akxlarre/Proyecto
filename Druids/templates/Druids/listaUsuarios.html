@@ -21,6 +21,91 @@
                     <input type="text" class="form-control" placeholder="Buscar Usuario">
                     <button class="btn btn-outline-secondary" type="button">Buscar</button>
                 </div>
+                <!--Boton de agregar usuario-->
+                <div class="contenedor-boton-agregar">
+                    <button class="btn btn-primary mt-3" id="boton-agregar-usuario" type="button" data-bs-toggle="modal"
+                        data-bs-target="#ModalAgregar">Agregar Usuario</button>
+                </div>
+                <!-- Modal de agregar usuario -->
+                <div class="modal fade " id="ModalAgregar" tabindex="-1" aria-labelledby="ModalAgregarLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ModalAgregarLabel">Agregar Usuario</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <form id="formulario-agregar-usuario" class="needs-validation">
+                                    <div class="mb-3 form-group">
+                                        <label for="nombre-agregar-usuario" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre-agregar-usuario" name="nombre-agregar-usuario" placeholder="Ingresa tu nombre">
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="correo-agregar-usuario" class="form-label">Correo</label>
+                                        <input type="email" class="form-control" id="correo-agregar-usuario" name="correo-agregar-usuario" placeholder="Ingresa tu correo">
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="direccion-agregar-usuario" class="form-label">Dirección (opcional)</label>
+                                        <input type="text" class="form-control" id="direccion-agregar-usuario" name="direccion-agregar-usuario" placeholder="Ingresa tu dirección">
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <label for="password-agregar-usuario" class="form-label fs-4">Contraseña</label>
+                                        <div class="text-danger font-weight-bold d-flex" id="requerimiento-longitud-agregar-usuario">
+                                            <p class="requerimiento">Al menos 8 caracteres</p><img class="validador"
+                                                src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
+                                        </div>
+                                        <div class="text-danger font-weight-bold d-flex" id="requerimiento-mayuscula-agregar-usuario">
+                                            <p class="requerimiento">Al menos una letra mayúscula</p><img class="validador"
+                                                src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
+                                        </div>
+                                        <div class="text-danger font-weight-bold d-flex" id="requerimiento-minuscula-agregar-usuario">
+                                            <p class="requerimiento">Al menos una letra minúscula</p><img class="validador"
+                                                src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
+                                        </div>
+                                        <div class="text-danger font-weight-bold d-flex" id="requerimiento-numero-agregar-usuario">
+                                            <p class="requerimiento">Al menos un número</p><img class="validador"
+                                                src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
+                                        </div>
+                                        <div class="text-danger font-weight-bold d-flex" id="requerimiento-especial-agregar-usuario">
+                                            <p class="requerimiento">Al menos un carácter especial</p><img class="validador"
+                                                src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control fs-5" id="password-agregar-usuario"
+                                                name="password-agregar-usuario" placeholder="Ingresa tu contraseña">
+                                            <button type="button" class="btn" id="boton-ver-contraseña">
+                                                <img src="{% static 'Druids/img/mostrar-pass.svg' %}" alt="Mostrar contraseña"
+                                                    class="ver-contraseña mostrar-pass">
+                                                <img src="{% static 'Druids/img/ocultar-pass.svg' %}" alt="Ocultar contraseña"
+                                                    class="ver-contraseña ocultar-pass">
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <label for="password-agregar-usuario" class="error"></label>
+                                        </div>
+                                    </div>
+                                    <!--rol de usuario-->
+                                    <div class="mb-3 form-group">
+                                        <label for="rol-agregar-usuario" class="form-label">Rol</label>
+                                        <select class="form-select" id="rol-agregar-usuario" name="rol-agregar-usuario">
+                                            <option value="0" selected>Selecciona un rol</option>
+                                            <option value="Administrador">Administrador</option>
+                                            <option value="Usuario">Usuario</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary" id="btnAgregar">Agregar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Lista de usuarios-->
                 <div class="card-body">
                     <div class="container-fluid mt-3">
                         <div class="col-12 mb-3">

@@ -1,3 +1,9 @@
+.contenedor-boton-agregar{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5vw;
+    margin-top: 1rem;
+}
 
 .boton-volver img{
     width: 2rem;
@@ -40,12 +46,4 @@
         max-width: 10rem;
     }
     
-}
-
-/*footer*/
-footer {
-    background-color: #2B2B2B;
-    color: #FFFFFF;
-    text-align: start;
-    width: 100%;
 }

@@ -17,6 +17,23 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    $('.ocultar-pass').hide();
+    // Mostrar y ocultar contraseña
+    $('#boton-ver-contraseña').click(function() {
+        var tipo = $('#password-agregar-usuario').attr('type');
+        if (tipo == 'password') {
+            $('#password-agregar-usuario').attr('type', 'text');
+            $('.mostrar-pass').hide();
+            $('.ocultar-pass').show();
+        } else {
+            $('#password-agregar-usuario').attr('type', 'password');
+            $('.ocultar-pass').hide();
+            $('.mostrar-pass').show();
+        }
+    });
+});
+
+$(document).ready(function() {
     $('.ocultar-repass').hide();
     // Mostrar y ocultar contraseña
     $('#boton-ver-contraseña-confirmar').click(function() {

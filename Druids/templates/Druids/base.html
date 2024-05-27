@@ -90,15 +90,15 @@
                                 name="password-inicio-sesion" placeholder="Ingresa tu contraseña">
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary fs-4">Iniciar sesión</button>
-                            <button type="button" class="btn btn-secondary fs-4" data-bs-toggle="modal"
+                            <button type="submit" class="boton-iniciar-sesion fs-4">Iniciar sesión</button>
+                            <button type="button" class="boton-registrarse fs-4" data-bs-toggle="modal"
                                 data-bs-target="#registerModal">Registrarse</button>
                         </div>
                     </form>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger fs-5" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton-cerrar fs-5" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -179,13 +179,13 @@
                             </div>
                         </div>
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary fs-4">Registrarse</button>
+                            <button type="submit" class="boton-registrarse fs-4">Registrarse</button>
                         </div>
                     </form>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger fs-5" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="boton-cerrar fs-5" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -223,6 +223,10 @@
     </div>
 </footer>
 <!-- Script -->
+<script type="text/javascript">
+    var emptySvgUrl = "{% static 'Druids/img/empty-svgrepo-com.svg' %}";
+    var completeSvgUrl = "{% static 'Druids/img/complete-svgrepo-com.svg' %}";
+</script>
 <script src="{% static 'Druids/js/scripts.js' %}"></script>
 <script src="{% static 'Druids/js/validaciones.js' %}"></script>
 <script src="{% static 'Druids/js/sidebar.js' %}"></script>

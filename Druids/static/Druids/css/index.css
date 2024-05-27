@@ -206,8 +206,7 @@ a .card:hover img {
 .card img {
     display: block; /* Para centrar la imagen */
     margin: 3rem auto; 
-    max-height: 10rem; /* Para que las imágenes no se vean tan grandes */
-    width: 7rem; /* Para mantener la proporción de aspecto */
+    max-height: 16rem; /* Para que las imágenes no se vean tan grandes */
 }
 
 .separador{
