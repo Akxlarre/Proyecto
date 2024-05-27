@@ -25,17 +25,17 @@
   /* The about link: 20px from the top with a green background */
   #inventario {
     top: 20px;
-    background-color: #029962;
+    background-color: #3a633a;
   }
   
   #pedidos {
     top: 80px;
-    background-color: #029962; 
+    background-color: #3a633a; 
   }
   
   #usuarios {
     top: 140px;
-    background-color: #029962; 
+    background-color: #3a633a; 
   }
 .text-sidebar{
 

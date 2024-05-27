@@ -209,8 +209,4 @@ a .card:hover img {
     max-height: 16rem; /* Para que las imágenes no se vean tan grandes */
 }
 
-.separador{
-    height: 3rem; /* Para separar las categorías de footer */
-}
-
 

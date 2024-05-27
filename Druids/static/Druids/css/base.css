@@ -44,3 +44,6 @@ body{
     background-color: #C62828; /* Rojo más oscuro para el hover */
   }
   
+.separador{
+    height: 6rem; /* Para separar las categorías de footer */
+}
