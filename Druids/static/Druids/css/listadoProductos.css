@@ -314,3 +314,34 @@ a {
         margin-top: -0.4rem;
     }
 }
+
+ .contenedor-categoria{
+  position: relative;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+}
+.contenedor-categoria::before{
+  background: #66BB6A;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.6s ease;
+}
+
+.contenedor-categoria::before{
+  width: 0%;
+  height: 100%;
+}
+
+.contenedor-categoria:hover::before{
+  width: 100%;
+}
+
+.card button a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
