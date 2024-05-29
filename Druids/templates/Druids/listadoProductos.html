@@ -1,319 +1,245 @@
-{% extends 'Druids/base.html' %} 
+{% extends 'Druids/base.html' %}
 {% block title %}listadoProductos{% endblock %}
-{% load static %} 
+{% load static %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/listadoProductos.css' %}">
 <link rel="stylesheet" href="{% static 'Druids/css/card-producto.css' %}">
-    <main>
-        <!-- Contenido principal -->
-        <section class="my-3">
-            <navbar class="navegacion-categorias navbar-expand-sm">
-                <div class="row justify-content-center">
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/arbol-icono.png' %}" alt="arboles" />
-                                <h3 class="text-center fs-6">Arboles</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/arbusto-icono.png' %}" alt="arbustos" />
-                                <h3 class="text-center fs-6">Arbustos</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/cactus-icono.png' %}" alt="cactus" />
-                                <h3 class="text-center fs-6">Cactus</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/flores-icono.png' %}" alt="flores" />
-                                <h3 class="text-center fs-6">Flores</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/implementos-icono.png' %}" alt="Implementos" />
-                                <h3 class="text-center fs-6">Implementos</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/cuidados-icono.png' %}" alt="cuidados" />
-                                <h3 class="text-center fs-6">Cuidados</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
-                        <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
-                            <div class="contenedor-categoria mt-3">
-                                <img class="img-fluid" src="{% static 'Druids/img/enredaderas-icono.png' %}" alt="enredaderas" />
-                                <h3 class="text-center fs-6">Enredaderas</h3>
-                            </div>
-                        </a>
-                    </div>
+<main>
+    <!-- Contenido principal -->
+    <section class="my-3">
+        <navbar class="navegacion-categorias navbar-expand-sm">
+            <div class="row justify-content-center categorias">
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/arbol-icono.png' %}" alt="arboles" />
+                            <h3 class="text-center fs-6">Arboles</h3>
+                        </div>
+                    </a>
                 </div>
-            </navbar>
-        </section>
-        <!-- Barra de búsqueda y ordenamiento -->
-        <section>
-            <div class="row d-flex justify-content-end mt-5">
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6 ml-5">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 buscar fs-5" type="search" placeholder="Buscar producto"
-                            aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0 fs-5" type="submit">Buscar</button>
-                    </form>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/arbusto-icono.png' %}" alt="arbustos" />
+                            <h3 class="text-center fs-6">Arbustos</h3>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle fs-5"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Ordenar por
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fs-5" href="#">Precio (mayor a menor)</a></li>
-                            <li><a class="dropdown-item fs-5" href="#">Precio (menor a mayor)</a></li>
-                            <li><a class="dropdown-item fs-5" href="#">Nombre (A-Z)</a></li>
-                            <li><a class="dropdown-item fs-5" href="#">Nombre (Z-A)</a></li>
-                        </ul>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/cactus-icono.png' %}" alt="cactus" />
+                            <h3 class="text-center fs-6">Cactus</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/flores-icono.png' %}" alt="flores" />
+                            <h3 class="text-center fs-6">Flores</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/implementos-icono.png' %}"
+                                alt="Implementos" />
+                            <h3 class="text-center fs-6">Implementos</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/cuidados-icono.png' %}" alt="cuidados" />
+                            <h3 class="text-center fs-6">Cuidados</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    <a href="{% url 'listadoProductos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/enredaderas-icono.png' %}"
+                                alt="enredaderas" />
+                            <h3 class="text-center fs-6">Enredaderas</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </navbar>
+    </section>
+    <!-- Barra de búsqueda y ordenamiento -->
+
+    <section class="filtro-y-busqueda">
+        <div class="contenedor-filtros">
+            <div class="barra-busqueda">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+            <div class="boton-ordenar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle fs-5"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Ordenar por
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item fs-5" href="#">Precio (mayor a menor)</a></li>
+                        <li><a class="dropdown-item fs-5" href="#">Precio (menor a mayor)</a></li>
+                        <li><a class="dropdown-item fs-5" href="#">Nombre (A-Z)</a></li>
+                        <li><a class="dropdown-item fs-5" href="#">Nombre (Z-A)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Listado de productos -->
+    <section class="listado-productos">
+        <div class="row d-flex justify-content-center ">
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
-            <!--filtro-->
-            <div class="row mt-5">
-                <div class="col-12 col-md-2 col-lg-2">
-                    <div class="contenedor-filtro ">
-                        <div class="row">
-                            <div class="col-12 header-filtro">
-                                <h3 class="text-center fs-4 texto-filtro">Filtros</h3>
-                            </div>
-                            <div class="col-12 contenedor-dropdown mt-1">
-                                <button class="boton-filtro fs-4" data-bs-toggle="collapse"
-                                    data-bs-target="#demo">Categorias</button>
-                                <div id="demo" class="collapse mx-3 mb-4">
-                                    <div class="form-check mt-2">
-                                        <input type="checkbox" class="form-check-input fs-5" id="check1">
-                                        <label class="form-check-label" for="check1">Opción 1</label>
-                                    </div>
-                                    <div class="form-check mt-2">
-                                        <input type="checkbox" class="form-check-input fs-5" id="check2">
-                                        <label class="form-check-label" for="check2">Opción 2</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 contenedor-dropdown mt-1">
-                                <button class="boton-filtro fs-4" data-bs-toggle="collapse"
-                                    data-bs-target="#demo2">Precios</button>
-                                <div id="demo2" class="collapse mx-3 mb-4">
-                                    <div class="form-check mt-2">
-                                        <input type="checkbox" class="form-check-input fs-5" id="check-precios">
-                                        <label class="form-check-label" for="check-precios">Opción 1</label>
-                                    </div>
-                                    <div class="form-check mt-2">
-                                        <input type="checkbox" class="form-check-input fs-5" id="check-precios2">
-                                        <label class="form-check-label" for="check-precios2">Opción 2</label>
-                                    </div>
-                                </div>
-                            </div>>
-                        </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
                     </div>
-                </div>
-                <!-- Listado de productos -->
-                <div class="col-12 col-md-9 col-lg-9">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-md-3 col-sm-6 mb-5">
-                                <div class="product-grid9">
-                                    <div class="product-image9">
-                                        <a href="{% url 'producto' %}">
-                                            <img class="pic pic-1" src="{% static 'Druids/img/planta-imagen1.jpeg' %}">
-                                            <img class="pic pic-2" src="{% static 'Druids/img/planta-imagen2.jpg' %}">
-                                        </a>
-                                        <a href="{% url 'producto' %}" class="fa fa-search product-full-view"><img class="lupa" src="{% static 'Druids/img/Lupa.svg' %}"></a>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="rating">
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                            <li class="fa fa-star"></li>
-                                        </ul>
-                                        <h3 class="title"><a href="#">Nombre planta</a></h3>
-                                        <div class="price">$precio</div>
-                                        <a class="add-to-cart" href="{% url 'producto' %}">Ver producto</a>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
+                    <button class="card__button">Read more</button>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="paginacion">
-            <nav>
-                <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </section>
-    </main>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 my-3">
+                <div class="card">
+                    <img
+                    class="card__background"
+                    src="{% static 'Druids/img/plant.png' %}"
+                    />
+                    <div class="card__content | flow">
+                    <div class="card__content--container | flow">
+                        <h2 class="card__title">planta</h2>
+                        <p class="card__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                        labore laudantium deserunt fugiat numquam.
+                        </p>
+                    </div>
+                    <button class="card__button">Read more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>                
+
+
+    <section class="paginacion">
+        <nav>
+            <ul class="pagination d-flex justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </section>
+</main>
+<script src="{% static 'Druids/js/listadoProductos.js' %}"></script>
 {% endblock %}
