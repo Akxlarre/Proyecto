@@ -105,3 +105,17 @@ $(document).ready(function() {
         }
     });
 } );
+
+$(document).ready(function() {
+    $('#rut-registro, #rut-agregar-usuario').on('input', function() {
+        var value = $(this).val();
+        // Permitir solo números
+        value = value.replace(/[^0-9kK]/g, '');
+        // Formatear el rut
+        value = value.replace(/(\d{1,2})(\d{3})(\d{3})([0-9kK]{1})/, '$1.$2.$3-$4');
+        if (value.length > 12) {
+            value = value.substr(0, 12);
+        }
+        $(this).val(value);
+    });
+});

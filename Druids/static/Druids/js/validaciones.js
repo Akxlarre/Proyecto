@@ -212,6 +212,11 @@ $(document).ready(function () {
                 email: true,
                 emailConDominio: true,
             },
+            "rut-registro": {
+                required: true,
+                minlength: 8,
+                validarRut: true,
+            },
             "password-registro": {
                 required: true,
                 strongPassword: true,
@@ -225,6 +230,10 @@ $(document).ready(function () {
             "usuario-registro": {
                 required: "Por favor ingresa un nombre de usuario",
                 minlength: "El nombre de usuario debe tener al menos 3 caracteres"
+            },
+            "rut-registro": {
+                required: "Por favor ingresa tu RUT",
+                minlength: "El RUT debe tener al menos 8 caracteres"
             },
             "email-registro": {
                 required: "Por favor ingresa tu correo electrónico",
@@ -635,6 +644,11 @@ $(document).ready(function () {
                 email: true,
                 emailConDominio: true,
             },
+            "rut-agregar-usuario": {
+                required: true,
+                minlength: 8,
+                validarRut: true,
+            },
             "password-agregar-usuario": {
                 required: true,
                 strongPassword: true,
@@ -653,6 +667,10 @@ $(document).ready(function () {
             "correo-agregar-usuario": {
                 required: "Por favor ingresa el correo electrónico del usuario",
                 email: "Por favor ingresa un correo electrónico válido"
+            },
+            "rut-agregar-usuario": {
+                required: "Por favor ingresa el RUT del usuario",
+                minlength: "El RUT debe tener al menos 8 caracteres"
             },
             "password-agregar-usuario": {
                 required: "Por favor ingresa la contraseña del usuario",
