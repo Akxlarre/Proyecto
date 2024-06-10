@@ -1,6 +1,7 @@
 {% extends 'Druids/base.html' %} 
 {% block title %}Contacto{% endblock %}
 {% load static %} 
+{% load crispy_forms_tags %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/contacto.css' %}">
     <main>
@@ -28,19 +29,9 @@
                         </address>
                     </div>
                     <div class="col-md-6">
-                        <form class="needs-validation" id="formulario-contacto">
-                            <div class="mb-3">
-                                <label for="nombre-contacto" class="form-label fs-5">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre-contacto" name="nombre-contacto" placeholder="Ingresa tu nombre">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email-contacto" class="form-label fs-5">Email:</label>
-                                <input type="email" class="form-control" id="email-contacto" name="email-contacto" placeholder="Ingresa tu correo">
-                            </div>
-                            <div class="mb-3">
-                                <label for="mensaje-contacto" class="form-label fs-5">Mensaje:</label>
-                                <textarea class="form-control" id="mensaje-contacto" name="mensaje-contacto" rows="3"></textarea>
-                            </div>
+                        <form method="post" class="needs-validation" id="formulario-contacto">
+                            {% csrf_token %}
+                            {{ formularioContacto|crispy }}
                             <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                         </form>
                     </div>

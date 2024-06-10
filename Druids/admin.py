@@ -12,8 +12,8 @@ class adminProducto(admin.ModelAdmin):
     list_filter = ['categoria']
 
 class adminPedido(admin.ModelAdmin):
-    list_display = ['usuario', 'fecha_pedido', 'total', 'estado']
-    search_fields = ['usuario', 'fecha_pedido', 'total', 'estado']
+    list_display = ['nombre', 'apellido', 'email', 'rut', 'fecha_pedido', 'total', 'estado']
+    search_fields = ['nombre', 'apellido', 'email', 'rut', 'fecha_pedido', 'total']
     list_filter = ['estado']
 
 class adminDetallePedido(admin.ModelAdmin):

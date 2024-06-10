@@ -28,7 +28,10 @@ class Producto(models.Model):
         return self.nombre
 
 class Pedido(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='pedidos')
+    nombre = models.CharField(max_length=100, verbose_name="Nombre del cliente")
+    apellido = models.CharField(max_length=100, verbose_name="Apellido del cliente")
+    email = models.EmailField(verbose_name="Correo Electrónico")
+    rut = models.CharField(max_length=10, verbose_name="RUT")
     fecha_pedido = models.DateTimeField(auto_now_add=True, verbose_name="Fecha del pedido")
     total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Total")
     direccion_envio = models.CharField(max_length=255, verbose_name="Dirección de envío")
@@ -45,6 +48,14 @@ class DetallePedido(models.Model):
 
     def __str__(self):
         return f"{self.producto.nombre} x {self.cantidad}"
+    
+class mensajeContacto(models.Model):
+    nombre = models.CharField(max_length=100, verbose_name="Nombre")
+    correo = models.EmailField(verbose_name="Correo Electrónico")
+    mensaje = models.TextField(verbose_name="Mensaje")
+
+    def __str__(self):
+        return f"{self.nombre} - {self.correo}"
     
 
 
