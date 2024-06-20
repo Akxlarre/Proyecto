@@ -16,5 +16,7 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path('producto/', producto, name='producto'),
     path('sobreNosotros/', sobreNosotros, name='sobreNosotros'),
+    path('registrarContacto/', registrarContacto, name='registrarContacto'),
+    path('registroProducto/', registroProducto, name='registroProducto'),
     
 ]

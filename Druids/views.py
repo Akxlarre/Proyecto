@@ -1,7 +1,6 @@
 from urllib import request
-from django.shortcuts import render
 from django.shortcuts import render, redirect
-from .forms import ContactoForm
+from .forms import ContactoForm, RegistroProductoForm
 
 # Create your views here.
 
@@ -47,12 +46,24 @@ def producto(request):
 def sobreNosotros(request):
     return render(request, 'Druids/sobreNosotros.html')
 
-def contacto(request):
+def registrarContacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el formulario en la base de datos
-            return redirect('contacto')  # Redirige a una página de éxito
+            return redirect(to='contacto')  # Redirige a la página de contacto
     else:
         form = ContactoForm()
     return render(request, 'Druids/contacto.html', {'formularioContacto': form})
+
+def registroProducto(request):
+    if request.method == 'POST':
+        form = RegistroProductoForm(data=request.POST ,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('inventario')
+    else:
+        form = RegistroProductoForm()
+    
+    data = {'form': form}
+    return render(request, 'Druids/inventario.html', data)

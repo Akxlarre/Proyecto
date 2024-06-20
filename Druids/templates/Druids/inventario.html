@@ -1,6 +1,7 @@
 {% extends 'Druids/base.html' %} 
 {% block title %}inventario{% endblock %}
 {% load static %} 
+{% load crispy_forms_tags %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/inventario.css' %}">
     <main>
@@ -157,103 +158,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="formulario-registrar-producto" class="needs-validation">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nombre-Producto">Nombre del producto</label>
-                                        <input type="text" class="form-control" id="nombre-Producto"
-                                            name="nombre-Producto" placeholder="Ingrese el nombre del producto">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="precio-Producto">Precio</label>
-                                        <input type="text" class="form-control" id="precio-Producto"
-                                            name="precio-Producto" placeholder="Ingrese el precio del producto">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="subcategoria-Producto">Categoría</label>
-                                        <select class="form-select" id="subcategoria-Producto"
-                                            name="subcategoria-Producto">
-                                            <option value="0">Seleccionar categoría</option>
-                                            <option value="categoria1">categoría 1</option>
-                                            <option value="categoria2">categoría 2</option>
-                                            <option value="categoria3">categoría 3</option>
-                                            <option value="categoria4">categoría 4</option>
-                                            <option value="categoria5">categoría 5</option>
-                                            <option value="categoria6">categoría 6</option>
-                                            <option value="categoria7">categoría 7</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="stock-Producto">Stock</label>
-                                        <input type="number" class="form-control" id="stock-Producto"
-                                            name="stock-Producto" placeholder="Ingrese el stock del producto">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="descripcion-Producto">Descripción breve</label>
-                                        <textarea class="form-control" id="descripcion-Producto"
-                                            name="descripcion-Producto" rows="3"
-                                            placeholder="Ingrese la descripción del producto"></textarea>
-                                    </div>
-                                </div>
-                                <!--Descripcion y cuidados-->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="descripcion-cuidado">Descripción y cuidados</label>
-                                        <textarea class="form-control" id="descripcion-cuidado"
-                                            name="descripcion-cuidado" rows="3"
-                                            placeholder="Ingrese la descripción y cuidados del producto"></textarea>
-                                    </div>
-                                </div>
-                                <!--Imagenes del producto-->
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto1">Imágenen Principal</label>
-                                        <input type="file" class="form-control" id="imagen-Producto1"
-                                            name="imagen-Producto1" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto2">Imágen del producto 2</label>
-                                        <input type="file" class="form-control" id="imagen-Producto2"
-                                            name="imagen-Producto2" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto3">Imágen del producto 3</label>
-                                        <input type="file" class="form-control" id="imagen-Producto3"
-                                            name="imagen-Producto3" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto4">Imágen del producto 4</label>
-                                        <input type="file" class="form-control" id="imagen-Producto4"
-                                            name="imagen-Producto4" multiple>
-                                    </div>
-                                </div>
-                            </div>
+                        <form method="post" enctype="multipart/form-data" class="needs-validation" id="form-registrar">
+                            {% csrf_token %}
+                            {{ form|crispy }}
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Registrar</button>
-                            </div>
+                                <button type="submit" class="btn btn-primary">Registrar producto</button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
