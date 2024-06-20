@@ -47,21 +47,27 @@ def sobreNosotros(request):
     return render(request, 'Druids/sobreNosotros.html')
 
 def registrarContacto(request):
+
+    form = ContactoForm()
+
     if request.method == 'POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el formulario en la base de datos
-            return redirect(to='contacto')  # Redirige a la página de contacto
+            return redirect('contacto')  # Redirige a la página de contacto
     else:
         form = ContactoForm()
-    return render(request, 'Druids/contacto.html', {'formularioContacto': form})
+    return render(request, 'Druids/registrarContacto', {'formularioContacto': form})
 
 def registroProducto(request):
+
+    form = RegistroProductoForm()
+
     if request.method == 'POST':
         form = RegistroProductoForm(data=request.POST ,files=request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('inventario')
+            return redirect(to='inventario')
     else:
         form = RegistroProductoForm()
     
