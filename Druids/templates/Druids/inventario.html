@@ -35,112 +35,28 @@
                                     <input type="text" class="form-control" placeholder="Buscar producto">
                                     <button class="btn btn-outline-secondary" type="button">Buscar</button>
                                 </div>
-                                <table class="table table-striped">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Producto</th>
-                                            <th>Categoria</th>
-                                            <th>Stock</th>
-                                            <th>Acciones</th>
+                                            <th>PRODUCTO</th>
+                                            <th>CATEGORIA</th>
+                                            <th>PRECIO</th>
+                                            <th>STOCK</th>
+                                            <th>ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for producto in Productos %}
                                         <tr>
-                                            <td>Producto 1</td>
-                                            <td>Categoria 1</td>
-                                            <td>10</td>
+                                            <td>{{ producto.nombre }}</td>
+                                            <td>{{ producto.categoria }}</td>
+                                            <td>{{ producto.precio }}</td>
+                                            <td>{{ producto.stock }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
+                                                <a href="{% url 'editarProducto' producto.id %}" class="btn btn-warning btn-sm">Editar</a>
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto" data-id="{{ producto.id }}" data-nombre="{{ producto.nombre}}">Eliminar</button>                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>Producto 2</td>
-                                            <td>Categoria 2</td>
-                                            <td>15</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 3</td>
-                                            <td>Categoria 3</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 4</td>
-                                            <td>Categoria 4</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 5</td>
-                                            <td>Categoria 5</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 6</td>
-                                            <td>Categoria 6</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 7</td>
-                                            <td>Categoria 7</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Producto 8</td>
-                                            <td>Categoria 8</td>
-                                            <td>8</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    data-bs-toggle="modal" data-bs-target="#modalEditarProducto">
-                                                    Editar
-                                                </button>
-                                                <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                                            </td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -149,8 +65,8 @@
                 </div>
             </div>
         </section>
-        <div class="modal fade" id="modalRegistrarProducto" tabindex="-1" aria-labelledby="modalRegistrarProductoLabel"
-            aria-hidden="true">
+        <!-- Modal para Registrar Producto -->
+        <div class="modal fade" id="modalRegistrarProducto" tabindex="-1" aria-labelledby="modalRegistrarProductoLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -160,17 +76,19 @@
                     <div class="modal-body">
                         <form method="post" enctype="multipart/form-data" class="needs-validation" id="form-registrar">
                             {% csrf_token %}
-                            {{ form|crispy }}
+                            {{ formularioRegistrarProducto|crispy }}
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Registrar producto</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="modalEditarProductoLabel"
-            aria-hidden="true">
+
+        <!-- Modal para Editar Producto -->
+        <div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="modalEditarProductoLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -178,101 +96,41 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="form-editar" class="needs-validation">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nombre-Producto-Editar">Nombre del producto</label>
-                                        <input type="text" class="form-control" id="nombre-Producto-Editar"
-                                            name="nombre-Producto-Editar" placeholder="Ingrese el nombre del producto">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="precio-Producto-Editar">Precio</label>
-                                        <input type="text" class="form-control" id="precio-Producto-Editar"
-                                            name="precio-Producto-Editar" placeholder="Ingrese el precio del producto">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="subcategoria-Producto-Editar">Categoría</label>
-                                        <select class="form-select" id="subcategoria-Producto-Editar"
-                                            name="subcategoria-Producto-Editar">
-                                            <option value="0">Seleccionar categoría</option>
-                                            <option value="categoria1">categoría 1</option>
-                                            <option value="categoria2">categoría 2</option>
-                                            <option value="categoria3">categoría 3</option>
-                                            <option value="categoria4">categoría 4</option>
-                                            <option value="categoria5">categoría 5</option>
-                                            <option value="categoria6">categoría 6</option>
-                                            <option value="categoria7">categoría 7</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="stock-Producto-Editar">Stock</label>
-                                        <input type="number" class="form-control" id="stock-Producto-Editar"
-                                            name="stock-Producto-Editar"
-                                            placeholder="Ingrese el stock del producto">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="descripcionProductoEditar">Descripción breve</label>
-                                        <textarea class="form-control" id="descripcion-Producto-Editar"
-                                            name="descripcion-Producto-Editar" rows="3"
-                                            placeholder="Ingrese la descripción del producto"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="cuidados-Producto-Editar">Descripción y cuidados</label>
-                                        <textarea class="form-control" id="cuidados-Producto-Editar"
-                                            name="cuidados-Producto-Editar" rows="3"
-                                            placeholder="Ingrese la descripción y cuidados del producto"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto-Editar1">Imágen Principal</label>
-                                        <input type="file" class="form-control" id="imagen-Producto-Editar1"
-                                            name="imagen-Producto-Editar1" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto-Editar2">Imágen del producto 2</label>
-                                        <input type="file" class="form-control" id="imagen-Producto-Editar2"
-                                            name="imagen-Producto-Editar2" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imagen-Producto-Editar3">Imágen del producto 3 </label>
-                                        <input type="file" class="form-control" id="imagen-Producto-Editar3" name="imagen-Producto-Editar3 multiple>
-                                    </div>
-                                </div>
-                                <div class=" col-md-12">
-                                        <div class="form-group">
-                                            <label for="imagen-Producto-Editar4">Imágen del producto 4</label>
-                                            <input type="file" class="form-control" id="imagen-Producto-Editar4"
-                                                name="imagen-Producto-Editar4" multiple>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                </div>
+                        <form method="post" enctype="multipart/form-data" class="needs-validation" id="form-editar">
+                            {% csrf_token %}
+                            {{ formularioEditarProducto|crispy }}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Eliminar Producto -->
+        <div class="modal fade" id="modalEliminarProducto" tabindex="-1" aria-labelledby="modalEliminarProductoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEliminarProductoLabel">Eliminar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Está seguro que desea eliminar el producto <strong id="productoNombre"></strong>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form id="formEliminar" method="POST" onsubmit="return verificarEnvio(this);">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                        <script>
+                        function verificarEnvio(form) {
+                            console.log("Formulario enviado a:", form.action);
+                            return true; // Permitir el envío
+                        }
+                        </script>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>

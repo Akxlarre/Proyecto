@@ -1,6 +1,8 @@
-from urllib import request
-from django.shortcuts import render, redirect
-from .forms import ContactoForm, RegistroProductoForm
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
+
+from Druids.models import Producto
+from .forms import ContactoForm, RegistroProductoForm, EditarProductoForm
 
 # Create your views here.
 
@@ -12,15 +14,58 @@ def index(request):
 
 def carrito(request):
     return render(request, 'Druids/carrito.html')
-
-def contacto(request):
-    return render(request, 'Druids/contacto.html')
  
 def historialCompra(request):
     return render(request, 'Druids/historialCompra.html')
 
 def inventario(request):
-    return render(request, 'Druids/inventario.html')
+    Productos = Producto.objects.all()
+    form_registrar = RegistroProductoForm()
+
+    if request.method == "POST":
+        form_registrar = RegistroProductoForm(data=request.POST, files=request.FILES)
+        if form_registrar.is_valid():
+            form_registrar.save()
+            return redirect(to='inventario')
+
+    context = {
+        'Productos': Productos,
+        'formularioRegistrarProducto': form_registrar,
+    }
+    return render(request, 'Druids/inventario.html', context)
+
+def editarProducto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    form_editar = EditarProductoForm(instance=producto)
+
+    if request.method == "POST":
+        form_editar = EditarProductoForm(data=request.POST, files=request.FILES, instance=producto)
+        if form_editar.is_valid():
+            form_editar.save()
+            return redirect(to='inventario')
+
+    context = {
+        'formularioEditarProducto': form_editar,
+        'producto': producto,
+    }
+    return render(request, 'Druids/editarProducto.html', context)
+
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
+
+from Druids.models import Producto
+
+def eliminar_producto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    
+    if request.method == "POST":
+        producto.delete()
+        return redirect('inventario')
+    
+    context = {
+        'producto': producto
+    }
+    return render(request, 'Druids/eliminar_producto.html', context)
 
 def listadoProductos(request):
     return render(request, 'Druids/listadoProductos.html')
@@ -46,30 +91,15 @@ def producto(request):
 def sobreNosotros(request):
     return render(request, 'Druids/sobreNosotros.html')
 
-def registrarContacto(request):
+def Contacto(request):
 
     form = ContactoForm()
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ContactoForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el formulario en la base de datos
             return redirect('contacto')  # Redirige a la página de contacto
     else:
         form = ContactoForm()
-    return render(request, 'Druids/registrarContacto', {'formularioContacto': form})
-
-def registroProducto(request):
-
-    form = RegistroProductoForm()
-
-    if request.method == 'POST':
-        form = RegistroProductoForm(data=request.POST ,files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(to='inventario')
-    else:
-        form = RegistroProductoForm()
-    
-    data = {'form': form}
-    return render(request, 'Druids/inventario.html', data)
+    return render(request, 'Druids/contacto.html', {'formularioContacto': form})
