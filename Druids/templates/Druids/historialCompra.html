@@ -25,134 +25,61 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
+                        <div class="row">  
+                            {% for pedido in pedidos %}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                                <div class="card mb-3">
                                     <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1234</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 1<br> - Producto 2<br>
-                                            - Producto 3</p>
-                                        <p class="card-text">Total: $100.00</p>
-                                        <p class="card-text">Estado de la Venta: En Proceso</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
+                                        <h5 class="card-title text-center">Pedido #{{ pedido.id }}</h5>
+                                        <p class="card-text">Cliente: {{ pedido.nombre }} {{ pedido.apellido }}</p>
+                                        <p class="card-text">Fecha: {{ pedido.fecha_pedido }}</p>
+                                        <p class="card-text">Total: ${{ pedido.total }}</p>
+                                        <p class="card-text">Estado: {{ pedido.estado }}</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary btn-sm ver-detalles" data-pedido-id="{{ pedido.id }}" data-bs-toggle="modal" data-bs-target="#modalVerPedido{{pedido.id}}">Ver Factura</button>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1235</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 4<br> - Producto 5<br>
-                                            - Producto 6</p>
-                                        <p class="card-text">Total: $150.00</p>
-                                        <p class="card-text">Estado de la Venta: Entregado</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
+                            <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="modalVerPedido{{pedido.id}}" tabindex="-1" aria-labelledby="modalVerPedidoLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalVerPedidoLabel">Pedido #<span id="pedido-id"></span></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <p>**Información de la Factura:**</p>
+                                            <ul>
+                                                <li>ID del Pedido: #{{ pedido.id }}</li>
+                                                <li>Fecha de Compra: {{ pedido.fecha_pedido }}</li>
+                                                <li>Cliente: {{ pedido.nombre }} {{ pedido.apellido }}</li>
+                                                <li>Dirección: {{ pedido.direccion_envio }}</li>
+                                                <li>Productos:</li>
+                                                <ul id="listaProductos">
+                                                    
+                                                </ul>
+                                                <li>Total: ${{ pedido.total }}</li>
+                                                <li>Estado de la Venta: {{ pedido.estado }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-primary fs-5" data-bs-dismiss="modal">Imprimir</button>
+                                            <button type="button" class="btn btn-danger fs-5" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1236</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 7<br> - Producto 8<br>
-                                            - Producto 9</p>
-                                        <p class="card-text">Total: $200.00</p>
-                                        <p class="card-text">Estado de la Venta: Cancelado</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1234</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 1<br> - Producto 2<br>
-                                            - Producto 3</p>
-                                        <p class="card-text">Total: $100.00</p>
-                                        <p class="card-text">Estado de la Venta: En Proceso</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1235</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 4<br> - Producto 5<br>
-                                            - Producto 6</p>
-                                        <p class="card-text">Total: $150.00</p>
-                                        <p class="card-text">Estado de la Venta: Entregado</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">ID del Pedido: #1236</h5>
-                                        <p class="card-text">Productos Comprados:<br> - Producto 7<br> - Producto 8<br>
-                                            - Producto 9</p>
-                                        <p class="card-text">Total: $200.00</p>
-                                        <p class="card-text">Estado de la Venta: Cancelado</p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalFactura">Ver factura</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal de ver factura -->
-            <div class="modal" id="modalFactura">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title fs-1">Factura</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="modal-body">
-                                <p>**Información de la Factura:**</p>
-                                <ul>
-                                    <li>ID del Pedido: #1236</li>
-                                    <li>Fecha de Compra: 2024-04-18</li>
-                                    <li>Cliente: [Nombre del Cliente]</li>
-                                    <li>Dirección: [Dirección del Cliente]</li>
-                                    <li>Productos:</li>
-                                    <ul>
-                                        <li>Producto 7: [Precio]</li>
-                                        <li>Producto 8: [Precio]</li>
-                                        <li>Producto 9: [Precio]</li>
-                                    </ul>
-                                    <li>Total: $200.00</li>
-                                    <li>Estado de la Venta: Cancelado</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer d-flex justify-content-between">
-                            <button type="button" class="btn btn-primary fs-5" data-bs-dismiss="modal">Imprimir</button>
-                            <button type="button" class="btn btn-danger fs-5" data-bs-dismiss="modal">Cerrar</button>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+<script src="{% static 'Druids/js/historialCompra.js' %}"></script>
+<script>
+    const detallePedidoUrl = "{% url 'detallePedido' %}";
+</script>
 {% endblock %}

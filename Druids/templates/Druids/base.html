@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -36,21 +37,38 @@
         <div id="espacio-sesion" class="col-3 d-flex justify-content-start">
             <div id="boton-perfil">
                 <!--boton perfil-->
-                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
-                    <img class="img-fluid profile" src="{% static 'Druids/img/perfil.png' %}" />
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item fs-5" href="{% url 'perfil' %}">Perfil</a></li>
-                    <li><a class="dropdown-item fs-5" href="{% url 'historialCompra' %}">Historial de compras</a></li>
-                    <li><a id="cerrar-sesion" class="dropdown-item fs-5">Cerrar Sesión</a></li>
-                </ul>
-            </div>
-            <div>
-                <button id="boton-inicio-sesion" type="button" class="btn" data-bs-toggle="modal"
-                    data-bs-target="#myModal">
-                    <h6 id="text-boton-inicio-sesion"><img id="img-iniciar-sesion"
-                            src="{% static 'Druids/img/iniciar-sesion1.svg' %}" alt=""><br />Iniciar sesión</h6>
-                </button>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="img-fluid profile" src="{% static 'Druids/img/perfil.png' %}" alt="Perfil" />
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
+                        <li><a class="dropdown-item fs-5" href="{% url 'perfil' %}">Perfil</a></li>
+                        <li><a class="dropdown-item fs-5" href="{% url 'historialCompra' %}">Historial de compras</a></li>
+                        <li><a class="dropdown-item fs-5" href="{% url 'cerrarSesion' %}">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                <div id="mySidenav" class="sidenav">
+                    <a class="d-flex justify-content-end " href="{% url 'inventario' %}" id="inventario"><img id="img-inventario"
+                            src="{% static 'Druids/img/inventario.svg' %}" alt="inventario">
+                        <h2 class="text-sidebar" id="text-inventario">Inventario</h2>
+                    </a>
+                    <a class="d-flex justify-content-end " href="{% url 'pedidos'  %}" id="pedidos"><img id="img-pedidos"
+                            src="{% static 'Druids/img/pedidos.svg' %}" alt="pedidos">
+                        <h2 class="text-sidebar" id="text-pedidos">Pedidos</h2>
+                    </a>
+                    <a class="d-flex justify-content-end " href="{% url 'listaUsuarios' %}" id="usuarios"><img id="img-usuarios"
+                            src="{% static 'Druids/img/usuarios.svg' %}" alt="usuarios">
+                        <h2 class="text-sidebar" id="text-usuarios">Usuarios</h2>
+                    </a>
+                </div>
+                {% else %}
+                <div>
+                    <a id="boton-inicio-sesion" class="btn" href="{% url 'iniciarSesion' %}">
+                        <h6 id="text-boton-inicio-sesion"><img id="img-iniciar-sesion" src="{% static 'Druids/img/iniciar-sesion1.svg' %}" alt="Iniciar Sesión"><br />Iniciar sesión</h6>
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-6 d-flex justify-content-center">
@@ -65,151 +83,7 @@
             </button>
         </div>
     </nav>
-    <!-- Modal de inicio de sesión -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title fs-1">Inicio de sesion</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form id="formulario-inicio-sesion" class="needs-validation" novalidate>
-                        <div class="mb-3 form-group">
-                            <label for="usuario-inicio-sesion" class="form-label fs-4">Nombre de usuario</label>
-                            <input type="text" class="form-control fs-5" id="usuario-inicio-sesion"
-                                name="usuario-inicio-sesion" placeholder="Ingresa tu nombre de usuario">
-                        </div>
-                        <div class="mb-3 form-group">
-                            <label for="password-inicio-sesion" class="form-label fs-4">Contraseña</label>
-                            <input type="password" class="form-control fs-5" id="password-inicio-sesion"
-                                name="password-inicio-sesion" placeholder="Ingresa tu contraseña">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="boton-iniciar-sesion fs-4">Iniciar sesión</button>
-                            <button type="button" class="boton-registrarse fs-4" data-bs-toggle="modal"
-                                data-bs-target="#registerModal">Registrarse</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="boton-cerrar fs-5" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- The Register Modal -->
-    <div class="modal" id="registerModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title fs-1">Registro</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form method="get" id="formulario-registro" class="needs-validation">
-                        <div class="mb-3 form-group">
-                            <label for="usuario-registro" class="form-label fs-4">Nombre de usuario</label>
-                            <input type="text" class="form-control fs-5" id="usuario-registro" name="usuario-registro"
-                                placeholder="Ingresa tu nombre de usuario">
-                        </div>
-                        <div class="mb-3 form-group">
-                            <label for="rut-registro" class="form-label fs-4">Rut</label>
-                            <input type="text" class="form-control fs-5" id="rut-registro" name="rut-registro"
-                                placeholder="Ingresa tu rut">
-                        </div>
-                        <div class="mb-3 form-group">
-                            <label for="email-registro" class="form-label fs-4">Email</label>
-                            <input type="email" class="form-control fs-5" id="email-registro" name="email-registro"
-                                placeholder="Ingresa tu email">
-                        </div>
-                        <div class="mb-3 form-group">
-                            <label for="password-registro" class="form-label fs-4">Contraseña</label>
-                            <div class="text-danger font-weight-bold d-flex" id="requerimiento-longitud">
-                                <p class="requerimiento">Al menos 8 caracteres</p><img class="validador"
-                                    src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
-                            </div>
-                            <div class="text-danger font-weight-bold d-flex" id="requerimiento-mayuscula">
-                                <p class="requerimiento">Al menos una letra mayúscula</p><img class="validador"
-                                    src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
-                            </div>
-                            <div class="text-danger font-weight-bold d-flex" id="requerimiento-minuscula">
-                                <p class="requerimiento">Al menos una letra minúscula</p><img class="validador"
-                                    src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
-                            </div>
-                            <div class="text-danger font-weight-bold d-flex" id="requerimiento-numero">
-                                <p class="requerimiento">Al menos un número</p><img class="validador"
-                                    src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
-                            </div>
-                            <div class="text-danger font-weight-bold d-flex" id="requerimiento-especial">
-                                <p class="requerimiento">Al menos un carácter especial</p><img class="validador"
-                                    src="{% static 'Druids/img/empty-svgrepo-com.svg' %}">
-                            </div>
-                            <div class="input-group">
-                                <input type="password" class="form-control fs-5" id="password-registro"
-                                    name="password-registro" placeholder="Ingresa tu contraseña">
-                                <button type="button" class="btn" id="boton-ver-contraseña">
-                                    <img src="{% static 'Druids/img/mostrar-pass.svg' %}" alt="Mostrar contraseña"
-                                        class="ver-contraseña mostrar-pass">
-                                    <img src="{% static 'Druids/img/ocultar-pass.svg' %}" alt="Ocultar contraseña"
-                                        class="ver-contraseña ocultar-pass">
-                                </button>
-                            </div>
-                            <div>
-                                <label for="password-registro" class="error"></label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password-registro-confirmar" class="form-label fs-4">Confirmar
-                                contraseña</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control fs-5" id="password-registro-confirmar"
-                                    name="password-registro-confirmar" placeholder="Confirma tu contraseña">
-                                <button type="button" class="btn" id="boton-ver-contraseña-confirmar">
-                                    <img src="{% static 'Druids/img/mostrar-pass.svg' %}" alt="Mostrar contraseña"
-                                        class="ver-contraseña mostrar-repass">
-                                    <img src="{% static 'Druids/img/ocultar-pass.svg' %}" alt="Ocultar contraseña"
-                                        class="ver-contraseña ocultar-repass">
-                                </button>
-                            </div>
-                            <div>
-                                <label for="password-registro-confirmar" class="error"></label>
-                            </div>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="boton-registrarse fs-4">Registrarse</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="boton-cerrar fs-5" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </header>
-<div id="mySidenav" class="sidenav">
-    <a class="d-flex justify-content-end " href="{% url 'inventario' %}" id="inventario"><img id="img-inventario"
-            src="{% static 'Druids/img/inventario.svg' %}" alt="inventario">
-        <h2 class="text-sidebar" id="text-inventario">Inventario</h2>
-    </a>
-    <a class="d-flex justify-content-end " href="{% url 'pedidos'  %}" id="pedidos"><img id="img-pedidos"
-            src="{% static 'Druids/img/pedidos.svg' %}" alt="pedidos">
-        <h2 class="text-sidebar" id="text-pedidos">Pedidos</h2>
-    </a>
-    <a class="d-flex justify-content-end " href="{% url 'listaUsuarios' %}" id="usuarios"><img id="img-usuarios"
-            src="{% static 'Druids/img/usuarios.svg' %}" alt="usuarios">
-        <h2 class="text-sidebar" id="text-usuarios">Usuarios</h2>
-    </a>
-</div>
 <body>
     {% block contenido %}
     {% endblock %}    

@@ -120,16 +120,10 @@
                         <p>¿Está seguro que desea eliminar el producto <strong id="productoNombre"></strong>?</p>
                     </div>
                     <div class="modal-footer">
-                        <form id="formEliminar" method="POST" onsubmit="return verificarEnvio(this);">
+                        <form id="formEliminar" method="POST">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
-                        <script>
-                        function verificarEnvio(form) {
-                            console.log("Formulario enviado a:", form.action);
-                            return true; // Permitir el envío
-                        }
-                        </script>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>

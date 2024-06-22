@@ -1,189 +1,96 @@
-{% extends 'Druids/base.html' %} 
-{% block title %}pedidos{% endblock %}
-{% load static %} 
+{% extends 'Druids/base.html' %}
+{% block title %}Pedidos{% endblock %}
+{% load static %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pedidos.css' %}">
-    <main>
-        <!--boton de volver atras-->
-        <section class="d-flex justify-content-start">
-            <div class="container m-2">
-                <a href="{% url 'index' %}" class="btn boton-volver"><img src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <h1 class="text-center mb-4">Historial de pedidos</h1>
-                <div class="row mb-4">
-                    <div class="col-md-6 offset-md-3">
-                        <form>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar pedido por ID...">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Buscar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #123</h5>
-                                <p class="card-text">Fecha: 2024-04-15</p>
-                                <p class="card-text">Cliente: Juan Pérez</p>
-                                <p class="card-text">Total: $100</p>
-                                <p class="card-text">Dirección: Calle 123, Ciudad</p>
-                                <p class="card-text">Estado: Pendiente</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                    <button type="button" class="btn btn-success btn-sm">Marcar como completado</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                                </div>
+<main>
+    <section class="d-flex justify-content-start">
+        <div class="container m-2">
+            <a href="{% url 'index' %}" class="btn boton-volver"><img
+                    src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1 class="text-center mb-4">Historial de pedidos</h1>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar pedido por ID...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #456</h5>
-                                <p class="card-text">Fecha: 2024-04-10</p>
-                                <p class="card-text">Cliente: María Gómez</p>
-                                <p class="card-text">Total: $50</p>
-                                <p class="card-text">Dirección: Avenida Principal, Barrio X</p>
-                                <p class="card-text">Estado: En proceso</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                    <button type="button" class="btn btn-success btn-sm">Marcar como completado</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #789</h5>
-                                <p class="card-text">Fecha: 2024-04-05</p>
-                                <p class="card-text">Cliente: Pedro López</p>
-                                <p class="card-text">Total: $150</p>
-                                <p class="card-text">Dirección: Calle Y, Urbanización Z</p>
-                                <p class="card-text">Estado: Completado</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #123</h5>
-                                <p class="card-text">Fecha: 2024-04-15</p>
-                                <p class="card-text">Cliente: Juan Pérez</p>
-                                <p class="card-text">Total: $100</p>
-                                <p class="card-text">Dirección: Calle 123, Ciudad</p>
-                                <p class="card-text">Estado: Pendiente</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                    <button type="button" class="btn btn-success btn-sm">Marcar como completado</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #456</h5>
-                                <p class="card-text">Fecha: 2024-04-10</p>
-                                <p class="card-text">Cliente: María Gómez</p>
-                                <p class="card-text">Total: $50</p>
-                                <p class="card-text">Dirección: Avenida Principal, Barrio X</p>
-                                <p class="card-text">Estado: En proceso</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                    <button type="button" class="btn btn-success btn-sm">Marcar como completado</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">Pedido #789</h5>
-                                <p class="card-text">Fecha: 2024-04-05</p>
-                                <p class="card-text">Cliente: Pedro López</p>
-                                <p class="card-text">Total: $150</p>
-                                <p class="card-text">Dirección: Calle Y, Urbanización Z</p>
-                                <p class="card-text">Estado: Completado</p>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalVerPedido">Ver</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-
-            <div class="modal fade" id="modalVerPedido" tabindex="-1" aria-labelledby="modalVerPedidoLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalVerPedidoLabel">Ver pedido</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Contenido del pedido -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="cliente">Cliente: Juan Pérez</div>
-                                    <div class="fecha">Fecha: 2024-04-15</div>
-                                    <hr>
-                                    <div class="producto">Producto 1</div>
-                                    <div class="cantidad">Cantidad: 2</div>
-                                    <hr>
-                                    <div class="producto">Producto 2</div>
-                                    <div class="cantidad">Cantidad: 3</div>
-                                    <hr>
-                                    <div class="producto">Producto 3</div>
-                                    <div class="cantidad">Cantidad: 1</div>
-                                    <hr>
-                                    <div class="producto">Producto 4</div>
-                                    <div class="cantidad">Cantidad: 5</div>
-                                    <hr>
-                                    <div class="producto">Producto 5</div>
-                                    <div class="cantidad">Cantidad: 1</div>
-                                    <hr>
-                                    <div class="producto">Producto 6</div>
-                                    <div class="cantidad">Cantidad: 2</div>
-                                    <hr>
-                                    <div class="Total">Total: $100</div>
-                                    <div class="direccion">Dirección: Calle 123, Ciudad</div>
-                                    <div class="estado">Estado: Pendiente</div>
-                                </div>
+            <div class="row">
+            {% for pedido in pedidos %}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Pedido #{{ pedido.id }}</h5>
+                            <p class="card-text">Cliente: {{ pedido.nombre }} {{ pedido.apellido }}</p>
+                            <p class="card-text">Fecha: {{ pedido.fecha_pedido }}</p>
+                            <p class="card-text">Total: ${{ pedido.total }}</p>
+                            <p class="card-text">Estado: {{ pedido.estado }}</p>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary btn-sm ver-detalles"
+                                    data-pedido-id="{{ pedido.id }}" data-bs-toggle="modal"
+                                    data-bs-target="#modalVerPedido{{pedido.id}}">Ver detalles</button>
+                                {% if pedido.estado != 'Completado' and pedido.estado != 'Cancelado' %}
+                                <button type="button" class="btn btn-success btn-sm cambiar-estado"
+                                    data-pedido-id="{{ pedido.id }}" data-estado="Completado">Completar</button>
+                                <button type="button" class="btn btn-danger btn-sm cambiar-estado"
+                                    data-pedido-id="{{ pedido.id }}" data-estado="Cancelado">Cancelar</button>
+                                {% endif %}
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modalVerPedido{{pedido.id}}" tabindex="-1" aria-labelledby="modalVerPedidoLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalVerPedidoLabel">Pedido #<span id="pedido-id"></span></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Cliente: <span id="pedido-cliente"></span></p>
+                                <p>Fecha: <span id="pedido-fecha"></span></p>
+                                <p>Total: $<span id="pedido-total"></span></p>
+                                <p>Estado: <span id="pedido-estado"></span></p>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio Unitario</th>
+                                            <th scope="col">Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pedido-detalles">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-        </section>
-    </main>
-</body>
+        </div>
+    </section>
+</main>
+{% csrf_token %}
+<script>
+    const detallePedidoUrl = "{% url 'detallePedido' %}";
+    const cambiarEstadoPedidoUrl = "{% url 'cambiarEstadoPedido' %}";
+</script>
+<script src="{% static 'Druids/js/pedidos.js' %}"></script>
 {% endblock %}

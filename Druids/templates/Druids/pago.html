@@ -1,174 +1,64 @@
 {% extends 'Druids/base.html' %} 
 {% load static %} 
+{% load crispy_forms_tags %}
 {% block title %}pago{% endblock %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pago.css' %}">
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyY3bxIioBHabCMOeT1HjfAFjC1kdA3eU&libraries=places&callback=initMap">
-</script>
-    <main>
-        <!--boton de volver atras-->
-        <section class="d-flex justify-content-start">
-            <div class="container m-2">
-                <a href="{% url 'index' %}" class="btn boton-volver"><img src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-            </div>
-        </section>
-        <section>
-            <div class="row">
-                <div class="col-12 mt-1">
-                    <h1 class="text-center">Pago</h1>
-                </div>
-            </div>
-        </section>
-        <div class="row g-5 mx-5">
-            <div class="col-md-5 col-lg-4 order-md-last">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Tu carro</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Nombre del producto</h6>
-                            <small class="text-muted">Breve descripción</small>
-                        </div>
-                        <span class="text-muted">$1200</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Segundo producto</h6>
-                            <small class="text-muted">Breve descripción</small>
-                        </div>
-                        <span class="text-muted">$800</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0">Tercer elemento</h6>
-                            <small class="text-muted">Breve descripción</small>
-                        </div>
-                        <span class="text-muted">$500</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between bg-light">
-                        <div class="text-success">
-                            <h6 class="my-0">Código promocional</h6>
-                            <small>Ejemplo codigo</small>
-                        </div>
-                        <span class="text-success">−$500</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (clp)</span>
-                        <strong>$2000</strong>
-                    </li>
-                </ul>
-                <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="codigo-promo" name="codigo-promo"
-                            placeholder="Código Promo">
-                        <button type="submit" class="btn btn-secondary">Aplicar</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-7 col-lg-8">
-                <form class="needs-validation" id="form-pago" action="{% url 'pagoexitoso' %}" method="">
-                    <div class="row g-3">
-                        <div class="col-sm-6 form-group">
-                            <label for="Primer-nombre-pago" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="Primer-nombre-pago" name="Primer-nombre-pago"
-                                placeholder="">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label for="Apellido-pago" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" id="Apellido-pago" name="Apellido-pago"
-                                placeholder="">
-                        </div>
-                        <div class="col-12 form-group">
-                            <label for="rut" class="form-label">Rut</label>
-                            <input type="text" class="form-control" id="rut" name="rut" placeholder="xxxxxxxx-x">
-                        </div>
-                        <div class="col-12 form-group">
-                            <label for="Email-pago" class="form-label">Email <span
-                                    class="text-muted">(Opcional)</span></label>
-                            <input type="email" class="form-control" id="Email-pago" name="Email-pago"
-                                placeholder="tu@example.com">
-                        </div>
-                        <div class="col-12 form-group">
-                            <label for="Direccion-pago" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="Direccion-pago" name="Direccion-pago"
-                                placeholder="Paicavi 123">
-                        </div>
-                        <div class="col-md-5 form-group">
-                            <label for="Region" class="form-label">Region</label>
-                            <select class="form-select" id="Region" name="Region">
-                                <option value="0">Seleccione...</option>
-                                <option value="Región de Arica y Parinacota">Región de Arica y Parinacota</option>
-                                <option value="Región de Tarapacá">Región de Tarapacá</option>
-                                <option value="Región de Antofagasta">Región de Antofagasta</option>
-                                <option value="Región de Atacama">Región de Atacama</option>
-                                <option value="Región de Coquimbo">Región de Coquimbo</option>
-                                <option value="Región de Valparaíso">Región de Valparaíso</option>
-                                <option value="Región Metropolitana">Región Metropolitana</option>
-                                <option value="Región de O’Higgins">Región de O’Higgins</option>
-                                <option value="Región del Maule">Región del Maule</option>
-                                <option value="Región del Ñuble">Región del Ñuble</option>
-                                <option value="Región del Biobío">Región del Biobío</option>
-                                <option value="Región de La Araucanía">Región de La Araucanía</option>
-                                <option value="Región de Los Ríos">Región de Los Ríos</option>
-                                <option value="Región de Los Lagos">Región de Los Lagos</option>
-                                <option value="Región de Aysén">Región de Aysén</option>
-                                <option value="Región de Magallanes">Región de Magallanes</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="comuna" class="form-label">Comuna</label>
-                            <select class="form-select" id="comuna" name="comuna">
-                            </select>
-                        </div>
-                        <div class="col-md-3 form-group">
-                            <label for="zip" class="form-label">Código postal</label>
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="">
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <h4 class="mb-3">Metodo de pago</h4>
-                    <div class="my-3 form-group">
-                        <div class="form-check">
-                            <input id="credito" name="metodo-pago" type="radio" class="form-check-input">
-                            <label class="form-check-label" for="metodo-pago">Tarjeta de crédito</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="debito" name="metodo-pago" type="radio" class="form-check-input">
-                            <label class="form-check-label" for="metodo-pago">Tarjeta de débito</label>
-                        </div>
-                        <div>
-                            <label for="metodo-pago" class="error"></label>
-                        </div>
-                    </div>
-                    <div class="row gy-3">
-                        <div class="col-md-6 form-group">
-                            <label for="Nombre-titular" class="form-label">Nombre del Titular</label>
-                            <input type="text" class="form-control" id="Nombre-titular" name="Nombre-titular"
-                                placeholder="">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="Numero-tarjeta" class="form-label">Número de tarjeta</label>
-                            <input type="text" class="form-control" id="Numero-tarjeta" name="Numero-tarjeta"
-                                placeholder="">
-                        </div>
-                        <div class="col-md-3 form-group">
-                            <label for="Fecha-expiracion" class="form-label">Vencimiento</label>
-                            <input type="text" class="form-control" id="Fecha-expiracion" name="Fecha-expiracion"
-                                placeholder="MM/YY">
-                        </div>
-                        <div class="col-md-3 form-group">
-                            <label for="cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cvv" name="cvv">
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <button type="submit" class="w-100 btn btn-primary btn-lg">Continuar con el
-                        pago</button>
-                </form>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyY3bxIioBHabCMOeT1HjfAFjC1kdA3eU&libraries=places&callback=initMap"></script>
+<main>
+    <!--boton de volver atras-->
+    <section class="d-flex justify-content-start">
+        <div class="container m-2">
+            <a href="{% url 'index' %}" class="btn boton-volver"><img src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+            <div class="col-12 mt-1">
+                <h1 class="text-center">Pago</h1>
             </div>
         </div>
-    </main>
+    </section>
+    <div class="row g-5 mx-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Tu carro</span>
+                <span class="badge bg-primary rounded-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <!-- Aquí va el listado de productos en el carrito -->
+                 {% for item in carrito_items %}
+                <li class="list-group item">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{{ item.producto.imagen.url }}" class="img-fluid rounded-3" alt="{{ item.producto.nombre }}">
+                        </div>
+                        <div class="col-9">
+                            <p class="lead fw-normal mb-2">{{ item.producto.nombre }}</p>
+                            <p>
+                                <span class="text-muted fw-bold">Cantidad: </span>{{ item.cantidad }}
+                                <span class="text-muted fw-bold">Precio: </span>${{ item.total_price }}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <form class="card p-2" method="POST">
+                {% csrf_token %}
+                <!-- Formulario de código promocional -->
+            </form>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <form class="needs-validation" id="form-pago" action="{% url 'pago' %}" method="POST">
+                {% csrf_token %}
+                <!-- Formulario de datos de pago -->
+                {{ form|crispy }}
+                <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar con el pago</button>
+            </form>
+        </div>
+    </div>
+</main>
 <script src="{% static 'Druids/js/pago.js' %}"></script>
 {% endblock %}

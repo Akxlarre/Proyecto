@@ -1,5 +1,8 @@
 from django import forms
 from .models import mensajeContacto , Producto
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 
 class ContactoForm(forms.ModelForm):
     class Meta:
@@ -131,3 +134,28 @@ class EditarProductoForm(forms.ModelForm):
                 'id': 'imagen-4-producto'
             }),
         }
+
+class RegistroForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Usuario')
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+
+
+class PagoForm(forms.Form):
+    nombre = forms.CharField(label='Nombre', max_length=100)
+    apellido = forms.CharField(label='Apellido', max_length=100)
+    email = forms.EmailField(label='Correo Electrónico')
+    rut = forms.CharField(label='RUT', max_length=10)
+    direccion_envio = forms.CharField(label='Dirección de Envío', max_length=255)
+    metodo_pago = forms.ChoiceField(label='Método de Pago', choices=[('credito', 'Tarjeta de Crédito'), ('debito', 'Tarjeta de Débito')])
+    nombre_titular = forms.CharField(label='Nombre del Titular', max_length=100)
+    numero_tarjeta = forms.CharField(label='Número de Tarjeta', max_length=16)
+    fecha_expiracion = forms.CharField(label='Vencimiento', max_length=5)
+    cvv = forms.CharField(label='CVV', max_length=3)
+    
