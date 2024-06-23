@@ -12,6 +12,47 @@ $(document).ready(function(){
         modalBody.text(usuarioname);
         formEliminar.attr('action', `/eliminar_usuario/${usuarioid}/`);
         
-        console.log("Formulario de eliminación URL:", formEliminar.attr('action'));  // Debugging line
+        console.log("Formulario de eliminación URL:", formEliminar.attr('action'));  // debugear
+    });
+
+    // Bloquear usuario
+    $('#ModalBloquear').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var usuarioId = button.data('id');
+        var nombreUsuario = button.data('nombre');
+        var modal = $(this);
+        modal.find('.modal-body #nombreUsuarioBloquear').text(nombreUsuario);
+        modal.find('#btnBloquear').click(function() {
+            $.ajax({
+                url: `/bloquear-usuario/${usuarioId}/`,
+                type: 'GET',
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(response) {
+                    console.log('Error al bloquear usuario');
+                }
+            });
+        });
+    });
+
+    // Desbloquear usuario
+    $('#ModalDesbloquear').on('show.bs.modal', function(event) {
+        var button = $(event.relatedTarget);
+        var usuarioId = button.data('id');
+        var nombreUsuario = button.data('nombre');
+        var modal = $(this);
+        modal.find('.modal-body #nombreUsuarioDesbloquear').text(nombreUsuario);
+        modal.find('#btnDesbloquear').click(function() {
+            $.ajax({
+                url: `/desbloquear-usuario/${usuarioId}/`,
+                type: 'GET',
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(response) {
+                    console.log('Error al desbloquear usuario');}
+            });
+        });
     });
 });

@@ -19,9 +19,9 @@
                             <div class="carousel-item active imagen-caro">
                                 <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen.url }}" alt="Imagen del producto">
                             </div>
-                            {% for imagen in producto.imagenes_adicionales.all %}
+                            {% for imagen in imagenes %}
                             <div class="carousel-item">
-                                <img class="imagen-carousel img-fluid w-100" src="{{ imagen.url }}" alt="Imagen adicional del producto">
+                                <img class="imagen-carousel img-fluid w-100" src="{{ imagen }}" alt="Imagen adicional del producto">
                             </div>
                             {% endfor %}
                         </div>

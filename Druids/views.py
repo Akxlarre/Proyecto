@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from Druids.models import CarritoItem, DetallePedido, Pedido, Producto, Usuario
-from .forms import ContactoForm, LoginForm, PagoForm, RegistroAdminForm, RegistroProductoForm, EditarProductoForm , RegistroForm
+from .forms import ContactoForm, EditarPerfilForm, LoginForm, PagoForm, RegistroAdminForm, RegistroProductoForm, EditarProductoForm , RegistroForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -149,6 +149,20 @@ def eliminarUsuario(request,id):
     usuario.delete()
     return redirect('listaUsuarios')
 
+def bloquearUsuario(request, id):
+    user = get_object_or_404(Usuario, id=id)
+    print(f"Estado antes de bloquear: {user.usuario.is_active}")
+    user.usuario.is_active = False
+    user.usuario.save()
+    print(f"Estado después de bloquear: {user.usuario.is_active}")
+    return JsonResponse({'status': 'Usuario bloqueado'})
+
+def desbloquearUsuario(request, id):
+    user = get_object_or_404(Usuario, id=id)
+    user.usuario.is_active = True
+    user.usuario.save()
+    return JsonResponse({'status': 'Usuario desbloqueado'})
+
 def pago(request):
     carrito_items = CarritoItem.objects.all()
     total = sum(item.total_price for item in carrito_items)
@@ -235,13 +249,33 @@ def cambiar_estado_pedido(request):
     return JsonResponse({'success': False, 'error': 'Método no permitido'})
 
 def perfil(request):
-    return render(request, 'Druids/perfil.html')
+    usuario = Usuario.objects.get(usuario=request.user)
+
+    if request.method == 'POST':
+        form = EditarPerfilForm(request.POST, request.FILES, instance=usuario) # instance hace que el formulario se llene con los datos del usuario
+        if form.is_valid():
+            usuario.usuario.username = form.cleaned_data.get('nombre_usuario')
+            form.save()
+            return redirect('perfil')
+    else:
+        form = EditarPerfilForm(instance=usuario)
+
+    data = {
+        'usuario': usuario,
+        'form': form
+    }
+    return render(request, 'Druids/perfil.html', data)
 
 def producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     productos_relacionados = Producto.objects.filter(categoria=producto.categoria).exclude(id=producto.id)[:4]
+    imagenes = [producto.imagen_principal, producto.imagen_2, producto.imagen_3, producto.imagen_4]
+    for imagen in imagenes:
+        if imagen == '':
+            imagenes.remove(imagen)
     context = {
         'producto': producto,
+        'imagenes': imagenes,
         'productos_relacionados': productos_relacionados
     }
     return render(request, 'Druids/producto.html',context)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import mensajeContacto , Producto
+from .models import Usuario, mensajeContacto , Producto
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -152,6 +152,12 @@ class RegistroAdminForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Usuario')
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+
+class EditarPerfilForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['nombre_usuario','rut','correo', 'direccion' , 'foto_perfil' ]
+        
 
 
 class PagoForm(forms.Form):

@@ -48,20 +48,22 @@
                         <li><a class="dropdown-item fs-5" href="{% url 'cerrarSesion' %}">Cerrar Sesión</a></li>
                     </ul>
                 </div>
-                <div id="mySidenav" class="sidenav">
-                    <a class="d-flex justify-content-end " href="{% url 'inventario' %}" id="inventario"><img id="img-inventario"
-                            src="{% static 'Druids/img/inventario.svg' %}" alt="inventario">
-                        <h2 class="text-sidebar" id="text-inventario">Inventario</h2>
-                    </a>
-                    <a class="d-flex justify-content-end " href="{% url 'pedidos'  %}" id="pedidos"><img id="img-pedidos"
-                            src="{% static 'Druids/img/pedidos.svg' %}" alt="pedidos">
-                        <h2 class="text-sidebar" id="text-pedidos">Pedidos</h2>
-                    </a>
-                    <a class="d-flex justify-content-end " href="{% url 'listaUsuarios' %}" id="usuarios"><img id="img-usuarios"
-                            src="{% static 'Druids/img/usuarios.svg' %}" alt="usuarios">
-                        <h2 class="text-sidebar" id="text-usuarios">Usuarios</h2>
-                    </a>
-                </div>
+                    {% if user.is_superuser %}
+                    <div id="mySidenav" class="sidenav">
+                        <a class="d-flex justify-content-end " href="{% url 'inventario' %}" id="inventario"><img id="img-inventario"
+                                src="{% static 'Druids/img/inventario.svg' %}" alt="inventario">
+                            <h2 class="text-sidebar" id="text-inventario">Inventario</h2>
+                        </a>
+                        <a class="d-flex justify-content-end " href="{% url 'pedidos'  %}" id="pedidos"><img id="img-pedidos"
+                                src="{% static 'Druids/img/pedidos.svg' %}" alt="pedidos">
+                            <h2 class="text-sidebar" id="text-pedidos">Pedidos</h2>
+                        </a>
+                        <a class="d-flex justify-content-end " href="{% url 'listaUsuarios' %}" id="usuarios"><img id="img-usuarios"
+                                src="{% static 'Druids/img/usuarios.svg' %}" alt="usuarios">
+                            <h2 class="text-sidebar" id="text-usuarios">Usuarios</h2>
+                        </a>
+                    </div>
+                    {% endif %}
                 {% else %}
                 <div>
                     <a id="boton-inicio-sesion" class="btn" href="{% url 'iniciarSesion' %}">

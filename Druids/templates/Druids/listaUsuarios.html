@@ -78,17 +78,21 @@
                                 </div>
                                 <div class="col-12 mt-3">
                                     <div class="row d-flex justify-content-end botones-usuarios">
-                                        <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-danger me-2"
+                                        <div class="col-sm-auto"> 
+                                            <a href="#" class="btn btn-sm btn-danger me-2"
                                                 data-bs-toggle="modal" data-bs-target="#ModalEliminar"
                                                 data-id="{{ usuario.id }}"
                                                 data-nombre="{{ usuario.nombre_usuario }}">Eliminar</a>
+                                            {% if usuario.usuario.is_active %}
                                             <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-warning me-2"
-                                                    data-bs-toggle="modal" data-bs-target="#ModalBloquear">Bloquear</a>
+                                                    data-bs-toggle="modal" data-bs-target="#ModalBloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Bloquear</a>
                                             </div>
+                                            {% else %}
                                             <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-success me-2"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#ModalDesbloquear">Desbloquear</a>
+                                                    data-bs-target="#ModalDesbloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Desbloquear</a>
                                             </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +135,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Estás seguro de que quieres bloquear a este usuario?</p>
+                            <p>¿Estás seguro de que quieres bloquear a <strong id="nombreUsuarioBloquear"></strong>?</p>
                             <p>El usuario no podrá acceder a su cuenta.</p>
                         </div>
                         <div class="modal-footer">
@@ -151,7 +155,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p>¿Estás seguro de que quieres desbloquear a este usuario?</p>
+                            <p>¿Estás seguro de que quieres desbloquear a <strong id="nombreUsuarioDesbloquear"></strong>?</p>
                             <p>El usuario podrá acceder a su cuenta nuevamente.</p>
                         </div>
                         <div class="modal-footer">

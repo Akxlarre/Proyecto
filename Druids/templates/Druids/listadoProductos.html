@@ -73,7 +73,7 @@
             {% for producto in productos %}
             <div class="col-lg-2 col-md-3 col-sm-6 my-3">
                 <div class="card">
-                    <img class="card__background" src="{{ producto.imagen_principal}}" alt="Imagen del producto">
+                    <img class="card__background" src="{{ producto.imagen_principal.url}}" alt="Imagen del producto">
                     <div class="card__content | flow">
                         <div class="card__content--container | flow">
                             <h2 class="card__title">{{ producto.nombre }}</h2>
