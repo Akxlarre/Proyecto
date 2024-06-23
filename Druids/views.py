@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from Druids.models import CarritoItem, DetallePedido, Pedido, Producto
-from .forms import ContactoForm, LoginForm, PagoForm, RegistroProductoForm, EditarProductoForm , RegistroForm
+from Druids.models import CarritoItem, DetallePedido, Pedido, Producto, Usuario
+from .forms import ContactoForm, LoginForm, PagoForm, RegistroAdminForm, RegistroProductoForm, EditarProductoForm , RegistroForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -105,7 +105,50 @@ def listadoProductos(request, categoria):
     return render(request, 'Druids/listadoProductos.html', {'productos': productos})
 
 def listaUsuarios(request):
-    return render(request, 'Druids/listaUsuarios.html')
+    if request.method == 'POST':
+        form = RegistroAdminForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            rol = form.cleaned_data.get('rol')
+            if rol == 'Administrador':
+                user.is_superuser = True
+                user.is_staff = True
+            else:
+                user.is_superuser = False
+                user.is_staff = False
+
+            user.save()
+
+            print("User saved successfully")
+
+            usuario = Usuario(
+                usuario=user,
+                nombre_usuario=form.cleaned_data.get('username'),
+                correo=form.cleaned_data.get('email'),
+                rol=rol
+            )
+            usuario.save()
+            print("Usuario saved successfully")
+            return redirect('listaUsuarios')
+        else:
+            print("Formulario no válido")
+            print(form.errors)
+    else:
+        form = RegistroAdminForm()
+    
+    usuarios = Usuario.objects.all()
+    data = {
+        'usuarios': usuarios,
+        'form': form
+    }
+    return render(request, 'Druids/listaUsuarios.html', data )
+
+def eliminarUsuario(request,id):
+    usuario = get_object_or_404(Usuario, id=id)
+    usuario.usuario.delete()
+    usuario.delete()
+    return redirect('listaUsuarios')
+
 def pago(request):
     carrito_items = CarritoItem.objects.all()
     total = sum(item.total_price for item in carrito_items)
@@ -223,10 +266,18 @@ def registro(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
+            usuario = Usuario(
+                usuario=user,
+                nombre_usuario=username,
+                correo=form.cleaned_data.get('email'),
+                clave=password,
+                rol='Usuario'
+            )
+            usuario.save()
             login(request, user)
             return redirect('index')
     else:

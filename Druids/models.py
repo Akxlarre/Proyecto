@@ -13,12 +13,12 @@ Categorias = [
     ('Enredaderas', 'Enredaderas'),   
 ]
 
-class Usuario(models.Model):
+class Usuario(models.Model): 
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     nombre_usuario = models.CharField(max_length=50, unique=True, verbose_name="Nombre de usuario")
-    rut = models.CharField(max_length=10, unique=True, verbose_name="RUT")
+    rut = models.CharField(max_length=10, unique=True, verbose_name="RUT", blank=True, null=True)
     correo = models.EmailField(unique=True, verbose_name="Correo Electrónico")
     direccion = models.CharField(max_length=255, blank=True, null=True, verbose_name="Dirección")
-    contraseña = models.CharField(max_length=128, verbose_name="Contraseña")
     rol = models.CharField(max_length=20, choices=[('Administrador', 'Administrador'), ('Usuario', 'Usuario')], verbose_name="Rol")
 
     def __str__(self):

@@ -140,7 +140,14 @@ class RegistroForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2'] 
+
+class RegistroAdminForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+    rol = forms.ChoiceField(label='Rol', choices=[('Administrador', 'Administrador'), ('Usuario', 'Usuario')])
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2', 'rol']
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Usuario')
