@@ -157,6 +157,16 @@ class EditarPerfilForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['nombre_usuario','rut','correo', 'direccion' , 'foto_perfil' ]
+
+    def save(self, commit=True):
+        usuario_instance = super().save(commit=False)
+        user_instance = usuario_instance.usuario
+        user_instance.username = self.cleaned_data['nombre_usuario']
+        user_instance.email = self.cleaned_data['correo']
+        if commit:
+            user_instance.save()
+            usuario_instance.save()
+        return usuario_instance
         
 
 
