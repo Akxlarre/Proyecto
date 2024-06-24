@@ -39,7 +39,7 @@
                 <!--boton perfil-->
                 {% if user.is_authenticated %}
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn" type="button" id="perfilDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="img-fluid profile" src="{% static 'Druids/img/perfil.png' %}" alt="Perfil" />
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="perfilDropdown">
@@ -76,13 +76,22 @@
         <div class="col-6 d-flex justify-content-center">
             <a class="navbar-brand" href="{% url 'index' %}">DRUIDS</a>
         </div>
-        <!-- carrito de compra -->
-        <div class="col-3 d-flex justify-content-end">
-            <button type="button" class="btn">
-                <a href="{% url 'carrito' %}">
-                    <img class="img-fluid shopping-cart" src="{% static 'Druids/img/carrito-de-compras.png' %}">
-                </a>
-            </button>
+        <!--boton tienda-->
+        <div class="col-3 d-flex contenedor-botones">
+            <div class="row d-flex container">
+                <button class="btn boton-tienda col">
+                    <a class="btn" href="{% url 'listadoProductos' 'todos' %}">
+                        <img class="img-fluid" src="{% static 'Druids/img/iconoTienda.svg' %}" alt="Tienda">
+                        <h1 class="fs-6">Tienda</h1>
+                    </a>
+                </button>
+                <!-- carrito de compra -->
+                <button type="button" class="btn col">
+                    <a href="{% url 'carrito' %}">
+                        <img class="shopping-cart" src="{% static 'Druids/img/carrito-de-compras.png' %}">
+                    </a>
+                </button>
+            </div>
         </div>
     </nav>
 </header>

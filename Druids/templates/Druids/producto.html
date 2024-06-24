@@ -7,7 +7,8 @@
     <!--boton de volver atras-->
     <section class="d-flex justify-content-start">
         <div class="container m-2">
-            <a href="{% url 'index' %}" class="btn boton-volver"><img src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
+            <a href="{% url 'index' %}" class="btn boton-volver"><img
+                    src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
         </div>
     </section>
     <section>
@@ -17,13 +18,23 @@
                     <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active imagen-caro">
-                                <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen.url }}" alt="Imagen del producto">
+                                <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen_principal.url }}" alt="Imagen del producto">
                             </div>
-                            {% for imagen in imagenes %}
+                            {% if producto.imagen_2 %}
                             <div class="carousel-item">
-                                <img class="imagen-carousel img-fluid w-100" src="{{ imagen }}" alt="Imagen adicional del producto">
+                                <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen_2.url }}" alt="Imagen adicional del producto">
                             </div>
-                            {% endfor %}
+                            {% endif %}
+                            {% if producto.imagen_3 %}
+                            <div class="carousel-item">
+                                <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen_3.url }}" alt="Imagen adicional del producto">
+                            </div>
+                            {% endif %}
+                            {% if producto.imagen_4 %}
+                            <div class="carousel-item">
+                                <img class="imagen-carousel img-fluid w-100" src="{{ producto.imagen_4.url }}" alt="Imagen adicional del producto">
+                            </div>
+                            {% endif %}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,10 +47,16 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col contenedor-selectores">
-                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ producto.imagen.url }}" alt="Imagen del producto" data-bs-target="#imageCarousel" data-bs-slide-to="0">
-                            {% for imagen in producto.imagenes_adicionales.all %}
-                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ imagen.url }}" alt="Imagen adicional del producto" data-bs-target="#imageCarousel" data-bs-slide-to="{{ forloop.counter }}">
-                            {% endfor %}
+                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ producto.imagen_principal.url }}" alt="Imagen del producto" data-bs-target="#imageCarousel" data-bs-slide-to="0">
+                            {% if producto.imagen_2 %}
+                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ producto.imagen_2.url }}" alt="Imagen adicional del producto" data-bs-target="#imageCarousel" data-bs-slide-to="1">
+                            {% endif %}
+                            {% if producto.imagen_3 %}
+                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ producto.imagen_3.url }}" alt="Imagen adicional del producto" data-bs-target="#imageCarousel" data-bs-slide-to="2">
+                            {% endif %}
+                            {% if producto.imagen_4 %}
+                            <img class="img-thumbnail cursor mb-2 mx-lg-2 selector-imagen" src="{{ producto.imagen_4.url }}" alt="Imagen adicional del producto" data-bs-target="#imageCarousel" data-bs-slide-to="3">
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -55,10 +72,12 @@
                             {% csrf_token %}
                             <div class="col-2 my-4">
                                 <label for="cantidad">Cantidad</label>
-                                <input type="number" class="form-control cantidad" id="cantidad" name="cantidad" min="1" max="{{ producto.stock }}" value="1">
+                                <input type="number" class="form-control cantidad" id="cantidad" name="cantidad" min="1"
+                                    max="{{ producto.stock }}" value="1">
                             </div>
                             <div class="col my-5">
-                                <button type="submit" class="btn btn-primary" {% if producto.stock == 0 %}disabled{% endif %}>Agregar al carrito</button>
+                                <button type="submit" class="btn btn-primary" {% if producto.stock == 0 %}disabled
+                                {% endif%}>Agregar al carrito</button>
                             </div>
                         </form>
                     </div>
@@ -66,6 +85,7 @@
             </div>
         </div>
     </section>
+ 
     <section class="d-flex justify-content-center Descripcion">
         <div class="container m-3 text-center">
             <h1>Descripción y cuidados</h1>

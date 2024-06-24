@@ -16,9 +16,9 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                     <div class="card m-3">
                         {% if usuario.foto_perfil %}
-                            <img src="{{usuario.foto_perfil.url}}" class="card-img-top img-fluid rounded-start imagen-perfil" alt="Card Image">
+                            <img src="{{usuario.foto_perfil.url}}" class="card-img-top img-fluid imagen-perfil" alt="Card Image">
                         {% else %}
-                            <img src="{% static 'Druids/img/avatar.svg' %}" class="card-img-top img-fluid rounded-start imagen-perfil" alt="Card Image">
+                            <img src="{% static 'Druids/img/avatar.svg' %}" class="card-img-top img-fluid imagen-perfil" alt="Card Image">
                         {% endif %}
                         <div class="card-body d-flex justify-content-center">
                           <h5 class="card-title">{{usuario.nombre_usuario}}</h5>

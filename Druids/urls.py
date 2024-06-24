@@ -32,6 +32,7 @@ urlpatterns = [
     path('registro/', registro, name='registro'),
     path('iniciarSesion/', iniciar_sesion, name='iniciarSesion'),
     path('cerrarSesion/', cerrar_sesion, name='cerrarSesion'),
+
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

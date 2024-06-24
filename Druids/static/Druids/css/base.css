@@ -1,6 +1,34 @@
 body{
     background-color: #e5e7da; /* Color de fondo */
 }
+
+.contenedor-botones button {
+    margin: 0.5rem; /* Margen entre botones */
+  }
+  
+
+.boton-tienda { 
+  align-self: flex-end;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  width: 0.7rem;
+  height: auto;
+}
+
+.boton-tienda img {
+  position: relative;
+  top: 0.5rem;
+  width: 2rem;
+  height: auto;
+}
+
+.boton-tienda .fs-6{
+  position: relative;
+  top: 0.5rem;
+  color: #FFFFFF;
+
+}
 .boton-iniciar-sesion {
     background-color: #2E7D32; /* Verde oscuro */
     color: #FFFFFF; /* Texto blanco */

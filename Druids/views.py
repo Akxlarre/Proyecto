@@ -1,5 +1,8 @@
-from django.http import JsonResponse
+import os
+from django.conf import settings
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import path, reverse
 from Druids.models import CarritoItem, DetallePedido, Pedido, Producto, Usuario
 from .forms import ContactoForm, EditarPerfilForm, LoginForm, PagoForm, RegistroAdminForm, RegistroProductoForm, EditarProductoForm , RegistroForm
 from django.contrib.auth import login, authenticate, logout
@@ -92,16 +95,30 @@ def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     
     if request.method == "POST":
+        # Eliminar imágenes del sistema de archivos si existen
+        if producto.imagen_principal and os.path.isfile(producto.imagen_principal.path):
+            os.remove(producto.imagen_principal.path)
+        if producto.imagen_2 and os.path.isfile(producto.imagen_2.path):
+            os.remove(producto.imagen_2.path)
+        if producto.imagen_3 and os.path.isfile(producto.imagen_3.path):
+            os.remove(producto.imagen_3.path)
+        if producto.imagen_4 and os.path.isfile(producto.imagen_4.path):
+            os.remove(producto.imagen_4.path)
+        
         producto.delete()
         return redirect('inventario')
     
     context = {
         'producto': producto
     }
-    return render(request, context)
+    return render(request, 'ruta_a_tu_template/eliminar_producto.html', context)
 
 def listadoProductos(request, categoria):
-    productos = Producto.objects.filter(categoria=categoria)
+    if categoria == 'todos':
+        productos = Producto.objects.all().order_by('nombre')
+    else:
+        productos = Producto.objects.filter(categoria=categoria)
+
     return render(request, 'Druids/listadoProductos.html', {'productos': productos})
 
 def listaUsuarios(request):
@@ -143,10 +160,19 @@ def listaUsuarios(request):
     }
     return render(request, 'Druids/listaUsuarios.html', data )
 
-def eliminarUsuario(request,id):
+def eliminarUsuario(request, id):
     usuario = get_object_or_404(Usuario, id=id)
+    
+    # Asegúrate de que 'foto_perfil' es el nombre correcto del campo en tu modelo
+    foto_perfil_path = os.path.join(str(settings.MEDIA_ROOT).replace('/media/usuarios', ''), usuario.foto_perfil.name)
+    
+    # Remueve la foto de perfil si existe
+    if os.path.isfile(foto_perfil_path):
+        os.remove(foto_perfil_path)
+    
     usuario.usuario.delete()
     usuario.delete()
+
     return redirect('listaUsuarios')
 
 def bloquearUsuario(request, id):
@@ -269,14 +295,11 @@ def perfil(request):
 def producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     productos_relacionados = Producto.objects.filter(categoria=producto.categoria).exclude(id=producto.id)[:4]
-    imagenes = [producto.imagen_principal, producto.imagen_2, producto.imagen_3, producto.imagen_4]
-    for imagen in imagenes:
-        if imagen == '':
-            imagenes.remove(imagen)
+    imagenesAdicionales = [producto.imagen_2, producto.imagen_3, producto.imagen_4]
     context = {
         'producto': producto,
-        'imagenes': imagenes,
-        'productos_relacionados': productos_relacionados
+        'productos_relacionados': productos_relacionados,
+        'imagenesAdicionales': imagenesAdicionales
     }
     return render(request, 'Druids/producto.html',context)
 
@@ -308,7 +331,6 @@ def registro(request):
                 usuario=user,
                 nombre_usuario=username,
                 correo=form.cleaned_data.get('email'),
-                clave=password,
                 rol='Usuario'
             )
             usuario.save()

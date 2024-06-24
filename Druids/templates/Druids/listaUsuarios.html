@@ -59,10 +59,17 @@
                         {% for usuario in usuarios %}
                         <div class="card mt-3">
                             <div class="card-body row d-flex align-items-center">
+                                {% if usuario.foto_perfil %}
+                                <div class="col-md-3 contenedor-imagen">
+                                    <img class="imagenPerfil" src="{{ usuario.foto_perfil.url }}"
+                                        alt="imagen de perfil">
+                                </div>
+                                {% else %}
                                 <div class="col-md-3 contenedor-imagen">
                                     <img class="imagenPerfil" src="{% static 'Druids/img/avatar.svg' %}"
                                         alt="imagen de perfil">
                                 </div>
+                                {% endif %}
                                 <div class="col-sm-12 col-md-9">
                                     <div class="row contenedor-informacion">
                                         <div class="col-sm-4">
