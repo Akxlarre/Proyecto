@@ -7,6 +7,7 @@ from Druids.models import CarritoItem, DetallePedido, Pedido, Producto, Usuario
 from .forms import ContactoForm, EditarPerfilForm, LoginForm, PagoForm, RegistroAdminForm, RegistroProductoForm, EditarProductoForm , RegistroForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,8 +32,10 @@ def agregar_al_carrito(request, producto_id):
         existenciaItem.cantidad += cantidad
         existenciaItem.save()
     else:
-        CarritoItem.objects.create(producto=producto, cantidad=cantidad)        
-    return redirect('carrito')
+        CarritoItem.objects.create(producto=producto, cantidad=cantidad)
+
+    messages.success(request, f'{producto.nombre} ha sido agregado al carrito')        
+    return redirect('producto', id=producto_id)
 
 def disminuir_cantidad(request, carrito_item_id):
     carrito_item = get_object_or_404(CarritoItem, pk=carrito_item_id)
@@ -354,3 +357,4 @@ def iniciar_sesion(request):
 def cerrar_sesion(request):
     logout(request)
     return redirect('index')
+

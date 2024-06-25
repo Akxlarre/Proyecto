@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="container m-3 d-flex flex-column ">
+                <div class="container m-3 d-flex flex-column align-items-center ">
                     <h1 class="titulo-producto my-4">{{ producto.nombre }}</h1>
                     <p class="descripcion-producto my-4">{{ producto.descripcion }}</p>
                     <h4>{% if producto.stock > 0 %}En stock{% else %}Sin stock{% endif %}</h4>
@@ -70,8 +70,8 @@
                     <div class="row">
                         <form method="post" action="{% url 'agregar_al_carrito' producto.id %}">
                             {% csrf_token %}
-                            <div class="col-2 my-4">
-                                <label for="cantidad">Cantidad</label>
+                            <div class="col-12 my-4">
+                                <label class="d-flex justify-content-center" for="cantidad">Cantidad</label>
                                 <input type="number" class="form-control cantidad" id="cantidad" name="cantidad" min="1"
                                     max="{{ producto.stock }}" value="1">
                             </div>
@@ -80,6 +80,13 @@
                                 {% endif%}>Agregar al carrito</button>
                             </div>
                         </form>
+                    </div>
+                    <div class="col my-5">
+                        {% for mensaje in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                             {{mensaje}}
+                          </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -112,4 +119,5 @@
         </div>
     </section>
 </main>
+<script src="{% static 'Druids/js/producto.js' %}"></script
 {% endblock %}

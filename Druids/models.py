@@ -27,7 +27,7 @@ class Usuario(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100, verbose_name="Nombre del producto")
-    precio = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio")
+    precio = models.PositiveIntegerField(validators=[MinValueValidator(0)], verbose_name="Precio")
     categoria = models.CharField(max_length=50, choices=Categorias, verbose_name="Categoría")
     stock = models.PositiveIntegerField(validators=[MinValueValidator(0)], verbose_name="Stock")
     descripcion = models.TextField(verbose_name="Descripción del producto")

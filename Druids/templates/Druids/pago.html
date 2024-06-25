@@ -23,7 +23,7 @@
         <div class="col-md-5 col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-primary">Tu carro</span>
-                <span class="badge bg-primary rounded-pill">3</span>
+                <span class="badge bg-primary rounded-pill">{{ carrito_items|length }}</span>
             </h4>
             <ul class="list-group mb-3">
                 <!-- Aquí va el listado de productos en el carrito -->
@@ -31,7 +31,7 @@
                 <li class="list-group item">
                     <div class="row">
                         <div class="col-3">
-                            <img src="{{ item.producto.imagen.url }}" class="img-fluid rounded-3" alt="{{ item.producto.nombre }}">
+                            <img src="{{ item.producto.imagen_principal.url }}" class="img-fluid rounded-3" alt="{{ item.producto.nombre }}">
                         </div>
                         <div class="col-9">
                             <p class="lead fw-normal mb-2">{{ item.producto.nombre }}</p>
