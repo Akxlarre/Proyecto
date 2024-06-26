@@ -1,0 +1,13 @@
+{% extends 'Druids/base.html' %} 
+{% block title %}Editar Usuario{% endblock %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block contenido %}
+
+<form id="formulario-editar-perfil" method="post" class="needs-validation" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formularioEditarUsuario|crispy}}
+    <button type="submit" class="btn btn-primary fs-5">Guardar Cambios</button>
+</form>
+
+{% endblock %}

@@ -62,6 +62,24 @@ def historialCompra(request):
     pedidos = Pedido.objects.filter(usuario=request.user)
     return render(request, 'Druids/historialCompra.html', {'pedidos': pedidos})
 
+def editarUsuario(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    form_editar = EditarPerfilForm(instance=usuario)
+
+    if request.method == "POST":
+        form_editar = EditarPerfilForm(data=request.POST, files=request.FILES, instance=usuario)
+        if form_editar.is_valid():
+            form_editar.save()
+            return redirect(to='listaUsuarios')
+
+    context = {
+        'formularioEditarUsuario': form_editar,
+        'usuario': usuario,
+    }
+    return render(request, 'Druids/editarUsuario.html', context)
+
+
+
 def inventario(request):
     Productos = Producto.objects.all()
     form_registrar = RegistroProductoForm()
@@ -93,6 +111,7 @@ def editarProducto(request, id):
         'producto': producto,
     }
     return render(request, 'Druids/editarProducto.html', context)
+    
 
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)

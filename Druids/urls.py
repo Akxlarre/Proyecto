@@ -15,6 +15,7 @@ urlpatterns = [
     path('inventario/', inventario, name='inventario'),
     path('listadoProductos/<str:categoria>/', listadoProductos, name='listadoProductos'),
     path('listaUsuarios/', listaUsuarios, name='listaUsuarios'),
+    path('editarUsuario/<int:id>/', editarUsuario, name='editarUsuario'),
     path('eliminar_usuario/<int:id>/', eliminarUsuario, name='eliminar_usuario'),
     path('bloquear-usuario/<int:id>/', bloquearUsuario, name='bloquear_usuario'),
     path('desbloquear-usuario/<int:id>/', desbloquearUsuario, name='desbloquear_usuario'),

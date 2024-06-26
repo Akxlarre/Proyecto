@@ -90,6 +90,7 @@
                                                 data-bs-toggle="modal" data-bs-target="#ModalEliminar"
                                                 data-id="{{ usuario.id }}"
                                                 data-nombre="{{ usuario.nombre_usuario }}">Eliminar</a>
+                                            <a href="{% url 'editarUsuario' usuario.id %}" class="btn btn-sm btn-primary me-2">Editar</a>
                                             {% if usuario.usuario.is_active %}
                                             <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-warning me-2"
                                                     data-bs-toggle="modal" data-bs-target="#ModalBloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Bloquear</a>
@@ -173,6 +174,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </main>
 <script src="{% static 'Druids/js/listaUsuarios.js' %}"></script>
 {% endblock %}
