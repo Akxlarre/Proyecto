@@ -34,7 +34,8 @@ def agregar_al_carrito(request, producto_id):
     else:
         CarritoItem.objects.create(producto=producto, cantidad=cantidad)
 
-    messages.success(request, f'{producto.nombre} ha sido agregado al carrito')        
+    messages.success(request, 'ha sido agregado al carrito') 
+    messages.success(request, print('ha sido agregado al carrito'))       
     return redirect('producto', id=producto_id)
 
 def disminuir_cantidad(request, carrito_item_id):
