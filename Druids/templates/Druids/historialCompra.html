@@ -12,7 +12,30 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <div class="row">  
+                        <div class="row">
+                            {% if not pedidos %}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                                <div>
+                                    <div>
+                                        <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                                <div>
+                                    <div>
+                                        <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                                <div>
+                                    <div>
+                                        <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}  
                             {% for pedido in pedidos %}
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                                 <div class="card mb-3">
@@ -59,6 +82,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

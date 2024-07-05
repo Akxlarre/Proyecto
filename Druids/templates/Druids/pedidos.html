@@ -4,11 +4,34 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pedidos.css' %}">
 <main>
-    <section>
+    <section class="pedido-section">
         <div class="container">
             <h1 class="text-center mb-4">Historial de pedidos</h1>
             <div class="row">
-            {% for pedido in pedidos %}
+                {% if not pedidos %}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div>
+                        <div>
+                            <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div>
+                        <div>
+                            <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div>
+                        <div>
+                            <img src="{% static 'Druids/img/gris_claro.jpg' %}" class="img-fluid rounded-3" alt="skeleton">
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                {% for pedido in pedidos %}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                     <div class="card mb-3">
                         <div class="card-body">
@@ -65,6 +88,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     </section>

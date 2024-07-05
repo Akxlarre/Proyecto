@@ -32,3 +32,6 @@
     border-top: none;
 }
 
+.pedido-section{
+    min-height: 100vh;
+}
