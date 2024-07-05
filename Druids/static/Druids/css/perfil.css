@@ -1,12 +1,37 @@
 
-.boton-volver img{
-    width: 2rem;
-    height: 2rem;
-}
-
 .imagen-perfil {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
     margin: 1rem auto;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.imagen-perfil {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+h6 {
+    font-weight: bold;
+}
+
+.text-secondary {
+    font-size: 1rem;
+}
+
+.btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
 }

@@ -31,7 +31,7 @@ class Producto(models.Model):
     categoria = models.CharField(max_length=50, choices=Categorias, verbose_name="Categoría")
     stock = models.PositiveIntegerField(validators=[MinValueValidator(0)], verbose_name="Stock")
     descripcion = models.TextField(verbose_name="Descripción del producto")
-    cuidados = models.TextField(verbose_name="Descripción de cuidados")
+    cuidados = models.TextField(verbose_name="Descripción de cuidados",blank=True, null=True)
     imagen_principal = models.ImageField(upload_to='productos/', verbose_name="Imagen Principal")
     imagen_2 = models.ImageField(upload_to='productos/', blank=True, null=True, verbose_name="Imagen del producto 2")
     imagen_3 = models.ImageField(upload_to='productos/', blank=True, null=True, verbose_name="Imagen del producto 3")

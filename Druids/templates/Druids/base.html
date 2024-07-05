@@ -90,8 +90,12 @@
                 </button>
                 <!-- carrito de compra -->
                 <button type="button" class="btn col">
-                    <a href="{% url 'carrito' %}">
+                    <a href="{% url 'carrito' %}" class="carrito-link">
                         <img class="shopping-cart" src="{% static 'Druids/img/carrito-de-compras.png' %}">
+                        <!--si carrito item es mayot a ser-->
+                        {% if carrito_items_contador > 0 %}
+                        <span class="badge bg-primary rounded-pill contador_carrito">{{ carrito_items_contador }}</span>
+                        {% endif %}
                     </a>
                 </button>
             </div>
@@ -121,7 +125,6 @@
     var emptySvgUrl = "{% static 'Druids/img/empty-svgrepo-com.svg' %}";
     var completeSvgUrl = "{% static 'Druids/img/complete-svgrepo-com.svg' %}";
 </script>
-<script src="{% static 'Druids/js/scripts.js' %}"></script>
 <script src="{% static 'Druids/js/validaciones.js' %}"></script>
 <script src="{% static 'Druids/js/sidebar.js' %}"></script>
 <script src="{% static 'Druids/js/sesion.js' %}"></script>

@@ -297,25 +297,6 @@ a {
     margin-right: 2.5rem;
 }
 
-@media (max-width: 545px) {
-    .listado-productos .col-lg-2, .listado-productos .col-md-3, .listado-productos .col-sm-6 {
-        margin-left: 0.2rem;
-        margin-right: 8rem; 
-    }
-    .contenedor-categoria{
-        width: 6rem;
-        height: 6rem;
-    }
-    .contenedor-categoria img {
-        width: 4rem;
-    }
-    .contenedor-categoria .fs-6 {
-        font-size: 0.7rem !important;
-    }
-    .contenedor-categoria h3 {
-        margin-top: -0.4rem;
-    }
-}
 
 .contenedor-categoria {
   background-color: #fdd07d7a;
@@ -329,6 +310,8 @@ a {
   z-index: 2;
 }
 .contenedor-categoria h3 {
+  margin-top: -0.8rem;
+  font-size: 0.8rem;
   z-index: 2;
 }
 
@@ -360,4 +343,22 @@ a {
 .card button a{
     color: #FFFFFF;
     text-decoration: none;
+}
+
+@media (max-width: 545px) {
+  .listado-productos .col-lg-2, .listado-productos .col-md-3, .listado-productos .col-sm-6 {
+      margin-left: 0.2rem;
+      margin-right: 8rem; 
+  }
+  .contenedor-categoria{
+      width: 6rem;
+      height: 6rem;
+  }
+  .contenedor-categoria img {
+      width: 4rem;
+  }
+  .contenedor-categoria h3 {
+      font-size: 0.5rem;
+      margin-top: -0.4rem;
+  }
 }

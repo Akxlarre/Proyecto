@@ -4,24 +4,11 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/historialCompra.css' %}">
     <main>
-        <!--boton de volver atras-->
-        <section class="d-flex justify-content-start">
-            <div class="container m-2">
-                <a href="{% url 'index' %}" class="btn boton-volver"><img src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-            </div>
-        </section>
         <!--Seccion de historial de compras-->
         <section class="container-fluid Historial">
-            <!--Barra de busqueda-->
-
-            <!--Historial de compras-->
             <div class="card m-3">
                 <div class="card-header d-flex justify-content-center">
                     <h5>Historial de compras</h5>
-                </div>
-                <div class="input-group mt-3 buscador">
-                    <input type="text" class="form-control" placeholder="Buscar Pedido">
-                    <button class="btn btn-outline-secondary" type="button">Buscar</button>
                 </div>
                 <div class="card-body">
                     <div class="container">

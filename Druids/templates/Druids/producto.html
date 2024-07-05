@@ -80,53 +80,39 @@
             </div>
         </div>
     </section>
- 
+    {%if producto.categoria != "Implementos" and producto.categoria != "Cuidados"%}
     <section class="d-flex justify-content-center Descripcion">
         <div class="container m-3 text-center">
-            <h1>Descripción y cuidados</h1>
-            <p class="descripcion-producto">{{ producto.descripcion_larga }}</p>
+            <h1>Descripción</h1>
+            <p class="descripcion-producto">{{ producto.cuidados }}</p>
         </div>
     </section>
-    <section class="d-flex justify-content-center">
-        <div class="container m-3 text-center">
-            <h1>Productos relacionados</h1>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-                {% for relacionado in productos_relacionados %}
-                <div class="col">
-                    <div class="card">
-                        <img src="{{ relacionado.imagen.url }}" class="card-img-top" alt="{{ relacionado.nombre }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ relacionado.nombre }}</h5>
-                            <p class="card-text">${{ relacionado.precio }}</p>
-                            <a href="{% url 'producto' relacionado.id %}" class="btn btn-primary">Ver producto</a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+    {% endif %}
 </main>
 {% if messages %}
-        {% for m in messages %}
-            <script>
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "Agregado con éxito al carrito"
-                  });
-            </script>
-        {% endfor %}
+    {% for m in messages %}
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                customClass: {
+                    container: 'my-toast-container'
+                },
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+
+            Toast.fire({
+                icon: "success",
+                title: "Agregado con éxito al carrito"
+            });
+        </script>
+    {% endfor %}
 {% endif %}
 <script src="{% static 'Druids/js/producto.js' %}"></script>
 

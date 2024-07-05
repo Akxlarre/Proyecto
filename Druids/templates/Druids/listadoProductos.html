@@ -12,7 +12,7 @@
                     <a href="{% url 'listadoProductos' 'Arboles' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/arbol-icono.png' %}" alt="arboles" />
-                            <h3 class="text-center fs-6">Arboles</h3>
+                            <h3 class="text-center">Arboles</h3>
                         </div>
                     </a>
                 </div>
@@ -20,7 +20,7 @@
                     <a href="{% url 'listadoProductos' 'Arbustos' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/arbusto-icono.png' %}" alt="arbustos" />
-                            <h3 class="text-center fs-6">Arbustos</h3>
+                            <h3 class="text-center">Arbustos</h3>
                         </div>
                     </a>
                 </div>
@@ -28,7 +28,7 @@
                     <a href="{% url 'listadoProductos' 'Cactus' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/cactus-icono.png' %}" alt="cactus" />
-                            <h3 class="text-center fs-6">Cactus</h3>
+                            <h3 class="text-center">Cactus</h3>
                         </div>
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                     <a href="{% url 'listadoProductos' 'Flores' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/flores-icono.png' %}" alt="flores" />
-                            <h3 class="text-center fs-6">Flores</h3>
+                            <h3 class="text-center">Flores</h3>
                         </div>
                     </a>
                 </div>
@@ -44,7 +44,7 @@
                     <a href="{% url 'listadoProductos' 'Implementos' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/implementos-icono.png' %}" alt="Implementos" />
-                            <h3 class="text-center fs-6">Implementos</h3>
+                            <h3 class="text-center">Implementos</h3>
                         </div>
                     </a>
                 </div>
@@ -52,7 +52,7 @@
                     <a href="{% url 'listadoProductos' 'Cuidados' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/cuidados-icono.png' %}" alt="cuidados" />
-                            <h3 class="text-center fs-6">Cuidados</h3>
+                            <h3 class="text-center">Cuidados</h3>
                         </div>
                     </a>
                 </div>
@@ -60,7 +60,7 @@
                     <a href="{% url 'listadoProductos' 'Enredaderas' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/enredaderas-icono.png' %}" alt="enredaderas" />
-                            <h3 class="text-center fs-6">Enredaderas</h3>
+                            <h3 class="text-center">Enredaderas</h3>
                         </div>
                     </a>
                 </div>
@@ -85,19 +85,7 @@
             {% endfor %}
         </div>
     </section>                
-
-
-    <section class="paginacion">
-        <nav>
-            <ul class="pagination d-flex justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-    </section>
 </main>
 <script src="{% static 'Druids/js/listadoProductos.js' %}"></script>
+<script src="{% static 'Druids/js/scripts.js' %}"></script>
 {% endblock %}

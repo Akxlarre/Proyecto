@@ -42,36 +42,29 @@ body{
 .boton-iniciar-sesion:hover {
     background-color: #1B5E20; /* Verde más oscuro para el hover */
   }
-
-.boton-registrarse {
-    background-color: #66BB6A; /* Verde más claro */
-    color: #FFFFFF; /* Texto blanco */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-.boton-registrarse:hover {
-    background-color: #388E3C; /* Verde medio para el hover */
-  }
-  
-  /* Botón "Cerrar" */
-.boton-cerrar {
-    background-color: #E57373; /* Rojo suave */
-    color: #FFFFFF; /* Texto blanco */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-.boton-cerrar:hover {
-    background-color: #C62828; /* Rojo más oscuro para el hover */
-  }
+ 
   
 .separador{
     height: 6rem; /* Para separar las categorías de footer */
+}
+
+.carrito-link {
+  position: relative; 
+}
+
+.contador_carrito {
+  position: absolute !important;
+  top: -5px !important; 
+  right: -5px; 
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+@media (max-width: 768px) {
+  .contador_carrito {
+      top: -3px;
+      right: -3px;
+      font-size: 10px;
+      padding: 3px 6px;
+  }
 }

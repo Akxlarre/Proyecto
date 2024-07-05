@@ -4,27 +4,9 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pedidos.css' %}">
 <main>
-    <section class="d-flex justify-content-start">
-        <div class="container m-2">
-            <a href="{% url 'index' %}" class="btn boton-volver"><img
-                    src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-        </div>
-    </section>
     <section>
         <div class="container">
             <h1 class="text-center mb-4">Historial de pedidos</h1>
-            <div class="row mb-4">
-                <div class="col-md-6 offset-md-3">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Buscar pedido por ID...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">Buscar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="row">
             {% for pedido in pedidos %}
                 <div class="col-12 col-sm-12 col-md-6 col-lg-4">

@@ -5,23 +5,12 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/listaUsuarios.css' %}">
 <main>
-    <section class="d-flex justify-content-start">
-        <div class="container m-2">
-            <a href="{% url 'index' %}" class="btn boton-volver"><img
-                    src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-        </div>
-    </section>
     <!--Seccion de Usuarios-->
     <div class="container-fluid Historial">
         <!--Historial de compras-->
         <div class="card m-3">
             <div class="card-header d-flex justify-content-center">
                 <h5>Lista de usuarios</h5>
-            </div>
-            <!--Barra de busqueda-->
-            <div class="input-group mt-3 buscador">
-                <input type="text" class="form-control" placeholder="Buscar Usuario">
-                <button class="btn btn-outline-secondary" type="button">Buscar</button>
             </div>
             <!--Boton de agregar usuario-->
             <div class="contenedor-boton-agregar">
@@ -70,7 +59,7 @@
                                         alt="imagen de perfil">
                                 </div>
                                 {% endif %}
-                                <div class="col-sm-12 col-md-9">
+                                <div class="col-sm-12 col-md-6">
                                     <div class="row contenedor-informacion">
                                         <div class="col-sm-4">
                                             <h5 class="card-title ">{{ usuario.nombre_usuario }}</h5>
@@ -83,24 +72,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 mt-3">
-                                    <div class="row d-flex justify-content-end botones-usuarios">
+                                <div class="col-md-3 mt-3">
+                                    <div class="row d-flex justify botones-usuarios">
                                         <div class="col-sm-auto"> 
                                             <a href="#" class="btn btn-sm btn-danger me-2"
                                                 data-bs-toggle="modal" data-bs-target="#ModalEliminar"
                                                 data-id="{{ usuario.id }}"
                                                 data-nombre="{{ usuario.nombre_usuario }}">Eliminar</a>
                                             <a href="{% url 'editarUsuario' usuario.id %}" class="btn btn-sm btn-primary me-2">Editar</a>
-                                            {% if usuario.usuario.is_active %}
-                                            <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-warning me-2"
+                                        </div>
+                                        {% if usuario.usuario.is_active %}
+                                        <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-warning me-2"
                                                     data-bs-toggle="modal" data-bs-target="#ModalBloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Bloquear</a>
-                                            </div>
-                                            {% else %}
-                                            <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-success me-2"
+                                        </div>
+                                        {% else %}
+                                        <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-success me-2"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#ModalDesbloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Desbloquear</a>
-                                            </div>
-                                            {% endif %}
+                                         </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>
