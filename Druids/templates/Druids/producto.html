@@ -4,13 +4,6 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/producto.css' %}">
 <main>
-    <!--boton de volver atras-->
-    <section class="d-flex justify-content-start">
-        <div class="container m-2">
-            <a href="{% url 'index' %}" class="btn boton-volver"><img
-                    src="{% static 'Druids/img/back-svgrepo-com.svg' %}" alt=""></a>
-        </div>
-    </section>
     <section>
         <div class="row row-cols-2">
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-center">
@@ -72,12 +65,14 @@
                             {% csrf_token %}
                             <div class="col-12 my-4">
                                 <label class="d-flex justify-content-center" for="cantidad">Cantidad</label>
-                                <input type="number" class="form-control cantidad" id="cantidad" name="cantidad" min="1"
-                                    max="{{ producto.stock }}" value="1">
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary btn-decrement">-</button>
+                                    <input type="number" readonly class="form-control cantidad" id="cantidad" name="cantidad" min="1" max="{{ producto.stock }}" value="1">
+                                    <button type="button" class="btn btn-outline-secondary btn-increment">+</button>
+                                </div>
                             </div>
                             <div class="col my-5">
-                                <button type="submit" class="btn btn-primary" {% if producto.stock == 0 %}disabled
-                                {% endif%}>Agregar al carrito</button>
+                                <button type="submit" class="btn btn-primary" {% if producto.stock == 0 %}disabled{% endif %}>Agregar al carrito</button>
                             </div>
                         </form>
                     </div>
@@ -112,7 +107,6 @@
         </div>
     </section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% if messages %}
         {% for m in messages %}
             <script>
@@ -133,7 +127,7 @@
                   });
             </script>
         {% endfor %}
-    {% endif %}
+{% endif %}
+<script src="{% static 'Druids/js/producto.js' %}"></script>
 
-<script src="{% static 'Druids/js/producto.js' %}"></script
 {% endblock %}

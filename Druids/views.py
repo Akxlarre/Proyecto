@@ -375,6 +375,7 @@ def iniciar_sesion(request):
     return render(request, 'Druids/iniciarSesion.html', {'form': form})
 
 def cerrar_sesion(request):
+    CarritoItem.objects.all().delete()
     logout(request)
     return redirect('index')
 
