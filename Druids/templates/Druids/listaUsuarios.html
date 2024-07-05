@@ -6,12 +6,14 @@
 <link rel="stylesheet" href="{% static 'Druids/css/listaUsuarios.css' %}">
 <main>
     <!--Seccion de Usuarios-->
-    <div class="container-fluid Historial">
+    <div class="container-fluid Historial mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Usuarios</h1>
+            </div>
+        </div>
         <!--Historial de compras-->
         <div class="card m-3">
-            <div class="card-header d-flex justify-content-center">
-                <h5>Lista de usuarios</h5>
-            </div>
             <!--Boton de agregar usuario-->
             <div class="contenedor-boton-agregar">
                 <button class="btn btn-primary mt-3" id="boton-agregar-usuario" type="button" data-bs-toggle="modal"
@@ -72,14 +74,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mt-3">
+                                <di class="col-md-3 mt-3">
                                     <div class="row d-flex justify botones-usuarios">
                                         <div class="col-sm-auto"> 
+                                            <a href="{% url 'editarUsuario' usuario.id %}" class="btn btn-sm btn-primary me-2">Editar</a>
+                                        </div>
+                                        {% if usuario.usuario != request.user %} 
+                                        <div class="col-sm-auto">
                                             <a href="#" class="btn btn-sm btn-danger me-2"
                                                 data-bs-toggle="modal" data-bs-target="#ModalEliminar"
                                                 data-id="{{ usuario.id }}"
-                                                data-nombre="{{ usuario.nombre_usuario }}">Eliminar</a>
-                                            <a href="{% url 'editarUsuario' usuario.id %}" class="btn btn-sm btn-primary me-2">Editar</a>
+                                                data-nombre="{{ usuario.nombre_usuario }}">Eliminar
+                                            </a>
                                         </div>
                                         {% if usuario.usuario.is_active %}
                                         <div class="col-sm-auto"> <a href="#" class="btn btn-sm btn-warning me-2"
@@ -91,8 +97,9 @@
                                                     data-bs-target="#ModalDesbloquear" data-id="{{ usuario.id }}" data-nombre="{{ usuario.nombre_usuario }}">Desbloquear</a>
                                          </div>
                                         {% endif %}
+                                        {% endif %}
                                         </div>
-                                    </div>
+                                    </di>
                                 </div>
                             </div>
                             {% endfor %}
@@ -101,7 +108,7 @@
                 </div>
             </div>
             <!-- Modal de eliminar usuario -->
-            <div class="modal fade" id="ModalEliminar" tabindex="-1" aria-labelledby="ModalEliminarLabel"
+            <div class="modal fade" ivd="ModalEliminar" tabindex="-1" aria-labelledby="ModalEliminarLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
