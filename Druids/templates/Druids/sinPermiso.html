@@ -1,0 +1,29 @@
+{% extends 'Druids/base.html' %} 
+{% block title %}Sin Permiso{% endblock %}
+{% load static %} 
+{% block contenido %}
+    <main>
+        <section>
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{% static 'Druids/img/image.jpg' %}" class="img-fluid rounded-start" alt="Sin Permiso">
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-md-6">
+                        <h2 class="display-5">Sin Permiso</h2>
+                        <p>Lo siento, no tienes permiso para acceder a esta página.</p>
+                        <a href="{% url 'index' %}" class="btn btn-primary">Volver al inicio</a>
+                    </div>
+                    {% else %}
+                    <div class="col-md-6 mt-5">
+                        <h2 class="display-5">Sin Permiso</h2>
+                        <p>Lo siento, no tienes permiso para acceder a esta página.</p>
+                        <a href="{% url 'iniciarSesion' %}" class="btn btn-primary">Iniciar sesión</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

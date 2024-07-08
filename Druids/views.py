@@ -8,8 +8,12 @@ from .forms import ContactoForm, EditarPerfilForm, LoginForm, PagoForm, Registro
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+
+def es_superusuario(user):
+    return user.is_superuser
 
 def base(request):
     return render(request, 'Druids/base.html')
@@ -80,7 +84,8 @@ def editarUsuario(request, id):
     return render(request, 'Druids/editarUsuario.html', context)
 
 
-
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def inventario(request):
     Productos = Producto.objects.all()
     form_registrar = RegistroProductoForm()
@@ -97,6 +102,8 @@ def inventario(request):
     }
     return render(request, 'Druids/inventario.html', context)
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def editarProducto(request, id):
     producto = get_object_or_404(Producto, id=id)
     form_editar = EditarProductoForm(instance=producto)
@@ -114,6 +121,8 @@ def editarProducto(request, id):
     return render(request, 'Druids/editarProducto.html', context)
     
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, id=id)
     
@@ -144,6 +153,8 @@ def listadoProductos(request, categoria):
 
     return render(request, 'Druids/listadoProductos.html', {'productos': productos})
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def listaUsuarios(request):
     if request.method == 'POST':
         form = RegistroAdminForm(request.POST)
@@ -183,6 +194,8 @@ def listaUsuarios(request):
     }
     return render(request, 'Druids/listaUsuarios.html', data )
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def eliminarUsuario(request, id):
     usuario = get_object_or_404(Usuario, id=id)
     
@@ -198,6 +211,8 @@ def eliminarUsuario(request, id):
 
     return redirect('listaUsuarios')
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def bloquearUsuario(request, id):
     user = get_object_or_404(Usuario, id=id)
     print(f"Estado antes de bloquear: {user.usuario.is_active}")
@@ -206,6 +221,8 @@ def bloquearUsuario(request, id):
     print(f"Estado después de bloquear: {user.usuario.is_active}")
     return JsonResponse({'status': 'Usuario bloqueado'})
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def desbloquearUsuario(request, id):
     user = get_object_or_404(Usuario, id=id)
     user.usuario.is_active = True
@@ -254,6 +271,8 @@ def pago(request):
 def pagoexitoso(request):
     return render(request, 'Druids/pagoexitoso.html')
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def pedidos(request):
     pedidos = Pedido.objects.all()
     return render(request, 'Druids/pedidos.html', {'pedidos': pedidos})
@@ -284,6 +303,8 @@ def detallePedido(request):
         return JsonResponse(data)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
+@login_required
+@user_passes_test(es_superusuario, login_url='/sinPermiso/')
 def cambiar_estado_pedido(request):
     if request.method == 'POST':
         pedido_id = request.POST.get('id')
@@ -349,7 +370,7 @@ def registro(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password) # Autenticar al usuario 
             usuario = Usuario(
                 usuario=user,
                 nombre_usuario=username,
@@ -379,3 +400,5 @@ def cerrar_sesion(request):
     logout(request)
     return redirect('index')
 
+def sinpermiso(request):
+    return render(request, 'Druids/sinPermiso.html')

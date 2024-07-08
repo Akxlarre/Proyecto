@@ -33,6 +33,7 @@ urlpatterns = [
     path('registro/', registro, name='registro'),
     path('iniciarSesion/', iniciar_sesion, name='iniciarSesion'),
     path('cerrarSesion/', cerrar_sesion, name='cerrarSesion'),
+    path('sinPermiso/', sinpermiso, name='sinPermiso'),
 
 ]
 if settings.DEBUG:
