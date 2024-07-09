@@ -4,6 +4,13 @@
 .contenedor-carousel{
     max-width: 30vw;
 }
+
+.carousel-item{
+    
+    height: 35rem;
+
+}
+
 .imagen-carousel{
     width: 30vw;
 }

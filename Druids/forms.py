@@ -34,8 +34,8 @@ class ContactoForm(forms.ModelForm):
             raise forms.ValidationError('El nombre debe tener al menos 3 caracteres')
         if len(nombre) > 50:
             raise forms.ValidationError('El nombre no puede exceder los 50 caracteres')
-        if not re.match(r'^[a-zA-Z ]+$', nombre):
-            raise forms.ValidationError('El nombre debe contener solo letras y espacios')
+        if not re.match(r'^[a-zA-ZÁÉÍÓÚáéíóúÜü ]+$', nombre):
+            raise forms.ValidationError('El nombre debe contener solo letras, espacios y tildes')
         return nombre
 
     def clean_correo(self):
@@ -59,13 +59,14 @@ class ContactoForm(forms.ModelForm):
 class RegistroProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'precio', 'stock', 'descripcion', 'cuidados']
+        fields = ['nombre', 'precio', 'stock', 'categoria', 'descripcion', 'cuidados' , 'imagen_principal', 'imagen_2', 'imagen_3', 'imagen_4']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'precio': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
             'cuidados': forms.Textarea(attrs={'class': 'form-control'}),
+            'imagen_principal': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
     def clean_nombre(self):
@@ -74,16 +75,16 @@ class RegistroProductoForm(forms.ModelForm):
             raise forms.ValidationError('El nombre debe tener al menos 3 caracteres')
         if len(nombre) > 100:
             raise forms.ValidationError('El nombre no puede exceder los 100 caracteres')
-        if not re.match(r'^[a-zA-Z ]+$', nombre):
-            raise forms.ValidationError('El nombre debe contener solo letras y espacios')
+        if not re.match(r'^[a-zA-ZÁÉÍÓÚáéíóúÜü ]+$', nombre):
+            raise forms.ValidationError('El nombre debe contener solo letras, espacios y tildes')
         return nombre
 
     def clean_precio(self):
         precio = self.cleaned_data['precio']
         if precio < 0:
             raise forms.ValidationError('El precio no puede ser negativo')
-        if precio > 10000:
-            raise forms.ValidationError('El precio no puede exceder los $10,000')
+        if precio > 1000000:
+            raise forms.ValidationError('El precio no puede exceder los $1,000,000')
         return precio
 
     def clean_stock(self):
@@ -105,7 +106,7 @@ class RegistroProductoForm(forms.ModelForm):
     def clean_cuidados(self):
         cuidados = self.cleaned_data['cuidados']
 
-        if cuidados is not None:
+        if cuidados is not None and cuidados != '':
             if len(cuidados) < 10:
                 raise forms.ValidationError('Los cuidados deben tener al menos 10 caracteres')
             if len(cuidados) > 1000:
@@ -113,6 +114,14 @@ class RegistroProductoForm(forms.ModelForm):
             return cuidados
         else:
             return cuidados
+    
+    def clean_imagen_principal(self):
+        imagen_principal = self.cleaned_data['imagen_principal']
+        if imagen_principal.size > 5 * 1024 * 1024:
+            raise forms.ValidationError('El tamaño de la imagen no puede exceder los 5MB')
+        if not imagen_principal.name.endswith(('.jpg', '.jpeg', '.png', '.gif', '.JPG', '.JPEG', '.PNG', '.GIF')):
+            raise forms.ValidationError('El archivo debe ser una imagen en formato JPG, JPEG, PNG o GIF')
+        return imagen_principal
 
 
 class EditarProductoForm(forms.ModelForm):
@@ -121,7 +130,7 @@ class EditarProductoForm(forms.ModelForm):
         fields = ['nombre', 'precio', 'categoria', 'stock', 'descripcion', 'cuidados', 'imagen_principal', 'imagen_2', 'imagen_3', 'imagen_4']
         widgets = {
             'nombre': forms.TextInput(attrs={
-                'class': 'form-control', 
+                'class': 'form-control nombre-titular', 
                 'id': 'nombre-producto', 
                 'placeholder': 'Nombre del producto'
             }),
@@ -174,16 +183,16 @@ class EditarProductoForm(forms.ModelForm):
             raise forms.ValidationError('El nombre debe tener al menos 3 caracteres')
         if len(nombre) > 100:
             raise forms.ValidationError('El nombre no puede exceder los 100 caracteres')
-        if not re.match(r'^[a-zA-Z ]+$', nombre):
-            raise forms.ValidationError('El nombre debe contener solo letras y espacios')
+        if not re.match(r'^[a-zA-ZÁÉÍÓÚáéíóúÜü ]+$', nombre):
+            raise forms.ValidationError('El nombre debe contener solo letras, espacios y tildes')
         return nombre
 
     def clean_precio(self):
         precio = self.cleaned_data['precio']
         if precio < 0:
             raise forms.ValidationError('El precio no puede ser negativo')
-        if precio > 10000:
-            raise forms.ValidationError('El precio no puede exceder los $10,000')
+        if precio > 1000000:
+            raise forms.ValidationError('El precio no puede exceder los $1,000,000')
         return precio
 
     def clean_stock(self):
@@ -318,10 +327,16 @@ class LoginForm(AuthenticationForm):
 
 
 class EditarPerfilForm(forms.ModelForm):
+
+    nombre_usuario = forms.CharField(label='Nombre de Usuario', max_length=100)
+    rut = forms.CharField(label='RUT', max_length=12, widget=forms.TextInput(attrs={'class': 'form-control rut', 'placeholder': '12345678-9'}))
+    correo = forms.EmailField(label='Correo Electrónico', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    direccion = forms.CharField(label='Dirección', max_length=255, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    foto_perfil = forms.ImageField(label='Foto de Perfil', widget=forms.FileInput(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Usuario
-        fields = ['nombre_usuario','rut','correo', 'direccion' , 'foto_perfil' ]
-
+        fields = ['nombre_usuario', 'rut', 'correo', 'direccion', 'foto_perfil']
 
     def save(self, commit=True):
         usuario_instance = super().save(commit=False)
@@ -345,13 +360,44 @@ class EditarPerfilForm(forms.ModelForm):
 
     def clean_rut(self):
         rut = self.cleaned_data['rut']
-
-        if rut is not None:
-            if not re.match(r'^\d{1,8}-[kK\d]$', rut):
-                raise forms.ValidationError('Formato de RUT inválido')
-            return rut
-        else:
-            return rut
+        
+        # Limpiar el RUT eliminando puntos y espacios
+        rut = rut.replace('.', '').replace(' ', '')
+        
+        # Verificar longitud mínima
+        if len(rut) < 8:
+            raise forms.ValidationError('El RUT debe tener al menos 8 caracteres')
+        
+        # Verificar formato correcto (número y guión)
+        if '-' not in rut or rut.count('-') > 1:
+            raise forms.ValidationError('RUT inválido')
+        
+        # Separar número y dígito verificador
+        rut_number, verificador = rut.split('-')
+        
+        # Verificar que el número sea numérico y el verificador sea un dígito o 'k' (para RUTs válidos)
+        if not (rut_number.isdigit() and (verificador.isdigit() or verificador.lower() == 'k')):
+            raise forms.ValidationError('RUT inválido')
+        
+        # Convertir el dígito verificador calculado a string
+        suma = 0
+        factor = 2
+        rut_number = int(rut_number)
+        
+        # Algoritmo para calcular el dígito verificador
+        while rut_number > 0:
+            suma += (rut_number % 10) * factor
+            rut_number //= 10
+            factor = factor % 7 + 1
+        
+        resto = suma % 11
+        dv_calculado = 11 - resto if resto != 1 else 0
+        
+        # Manejar el caso especial de 'k' en mayúscula
+        if dv_calculado == 10:
+            dv_calculado = 'k'
+        
+        return rut
 
     def clean_correo(self):
         correo = self.cleaned_data['correo']
@@ -390,9 +436,9 @@ class PagoForm(forms.Form):
     apellido = forms.CharField(label='Apellido', max_length=100)
     email = forms.EmailField(label='Correo Electrónico')
     rut = forms.CharField(label='RUT', max_length=12, widget=forms.TextInput(attrs={'class': 'form-control rut', 'placeholder': '12345678-9'}))
-    direccion_envio = forms.CharField(label='Dirección de Envío', max_length=255)
+    direccion_envio = forms.CharField(label='Dirección de Envío', max_length=40)
     metodo_pago = forms.ChoiceField(label='Método de Pago', choices=[('credito', 'Tarjeta de Crédito'), ('debito', 'Tarjeta de Débito')])
-    nombre_titular = forms.CharField(label='Nombre del Titular', max_length=100)
+    nombre_titular = forms.CharField(label='Nombre del Titular', max_length=40, widget=forms.TextInput(attrs={'class': 'form-control nombre-titular', 'placeholder': 'Nombre del titular de la tarjeta'}))
     numero_tarjeta = forms.CharField(label='Número de Tarjeta', max_length=19, widget=forms.TextInput(attrs={'class': 'form-control numero-tarjeta', 'placeholder': 'XXXX-XXXX-XXXX-XXXX'}))
     fecha_expiracion = forms.CharField(label='Vencimiento', max_length=5, widget=forms.TextInput(attrs={'class': 'form-control fecha-expiracion', 'placeholder': 'MM/YY'})) 
     cvv = forms.CharField(label='CVV', max_length=3)
@@ -462,6 +508,9 @@ class PagoForm(forms.Form):
     
     def clean_nombre_titular(self):
         nombre_titular = self.cleaned_data['nombre_titular']
+
+        nombre_titular = nombre_titular.replace(' ', '')
+
         if len(nombre_titular) < 3:
             raise forms.ValidationError('El nombre del titular debe tener al menos 3 caracteres')
         if not nombre_titular.isalpha():

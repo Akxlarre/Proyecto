@@ -100,8 +100,8 @@
                 </li>
               </ul>
               {% if carrito_items %}
-              <button id="boton-pagar" type="button" class="btn boton-pagar"><a href="{% url 'pago' %}"
-                  class="text-white">Ir a pagar</a></button>
+              <a class="btn boton-pagar" href="{% url 'pago' %}"
+                  class="text-white">Ir a pagar</a>
               {% else %}
               <button id="boton-pagar" type="button" class="btn boton-pagar" disabled>Ir a pagar</button>
               {% endif %}

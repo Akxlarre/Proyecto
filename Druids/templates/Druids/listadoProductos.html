@@ -9,60 +9,123 @@
         <navbar class="navegacion-categorias navbar-expand-sm">
             <div class="row justify-content-center categorias">
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Arboles' %}
+                    <a href="{% url 'listadoProductos' 'Arboles' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/arbol-icono.png' %}" alt="arboles" />
+                            <h3 class="text-center">Arboles</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Arboles' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/arbol-icono.png' %}" alt="arboles" />
                             <h3 class="text-center">Arboles</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Arbustos' %}
+                    <a href="{% url 'listadoProductos' 'Arbustos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/arbusto-icono.png' %}" alt="arbustos" />
+                            <h3 class="text-center">Arbustos</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Arbustos' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/arbusto-icono.png' %}" alt="arbustos" />
                             <h3 class="text-center">Arbustos</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Cactus' %}
+                    <a href="{% url 'listadoProductos' 'Cactus' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/cactus-icono.png' %}" alt="cactus" />
+                            <h3 class="text-center">Cactus</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Cactus' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/cactus-icono.png' %}" alt="cactus" />
                             <h3 class="text-center">Cactus</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Flores' %}
+                    <a href="{% url 'listadoProductos' 'Flores' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/flores-icono.png' %}" alt="flores" />
+                            <h3 class="text-center">Flores</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Flores' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/flores-icono.png' %}" alt="flores" />
                             <h3 class="text-center">Flores</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Implementos' %}
+                    <a href="{% url 'listadoProductos' 'Implementos' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/implementos-icono.png' %}" alt="Implementos" />
+                            <h3 class="text-center">Implementos</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Implementos' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/implementos-icono.png' %}" alt="Implementos" />
                             <h3 class="text-center">Implementos</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Cuidados' %}
+                    <a href="{% url 'listadoProductos' 'Cuidados' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/cuidados-icono.png' %}" alt="cuidados" />
+                            <h3 class="text-center">Cuidados</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Cuidados' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/cuidados-icono.png' %}" alt="cuidados" />
                             <h3 class="text-center">Cuidados</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
                 <div class="col-4 col-sm-4 col-md-2 col-lg-1 mx-3">
+                    {% if estado == 'Enredaderas' %}
+                    <a href="{% url 'listadoProductos' 'Enredaderas' %}" style="text-decoration: none !important;">
+                        <div class="contenedor-categoria seleccionado mt-3">
+                            <img class="img-fluid" src="{% static 'Druids/img/enredaderas-icono.png' %}" alt="enredaderas" />
+                            <h3 class="text-center">Enredaderas</h3>
+                        </div>
+                    </a>
+                    {% else %}
                     <a href="{% url 'listadoProductos' 'Enredaderas' %}" style="text-decoration: none !important;">
                         <div class="contenedor-categoria mt-3">
                             <img class="img-fluid" src="{% static 'Druids/img/enredaderas-icono.png' %}" alt="enredaderas" />
                             <h3 class="text-center">Enredaderas</h3>
                         </div>
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </navbar>

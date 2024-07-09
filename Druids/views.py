@@ -45,7 +45,6 @@ def agregar_al_carrito(request, producto_id):
             CarritoItem.objects.create(producto=producto, cantidad=cantidad)
 
     messages.success(request, 'ha sido agregado al carrito') 
-    messages.success(request, print('ha sido agregado al carrito'))       
     return redirect('producto', id=producto_id)
 
 def disminuir_cantidad(request, carrito_item_id):
@@ -73,6 +72,7 @@ def historialCompra(request):
     pedidos = Pedido.objects.filter(usuario=request.user)
     return render(request, 'Druids/historialCompra.html', {'pedidos': pedidos})
 
+@login_required
 def editarUsuario(request, id):
     usuario = get_object_or_404(Usuario, id=id)
     form_editar = EditarPerfilForm(instance=usuario)
@@ -82,11 +82,12 @@ def editarUsuario(request, id):
         if form_editar.is_valid():
             form_editar.save()
             return redirect(to='listaUsuarios')
-
+        
     context = {
         'formularioEditarUsuario': form_editar,
         'usuario': usuario,
     }
+    
     return render(request, 'Druids/editarUsuario.html', context)
 
 
@@ -152,12 +153,13 @@ def eliminar_producto(request, id):
     return render(request, 'ruta_a_tu_template/eliminar_producto.html', context)
 
 def listadoProductos(request, categoria):
+    estado = categoria
     if categoria == 'todos':
         productos = Producto.objects.all().order_by('nombre')
     else:
         productos = Producto.objects.filter(categoria=categoria)
 
-    return render(request, 'Druids/listadoProductos.html', {'productos': productos})
+    return render(request, 'Druids/listadoProductos.html', {'productos': productos, 'estado': estado})
 
 @login_required
 @user_passes_test(es_superusuario, login_url='/sinPermiso/')
