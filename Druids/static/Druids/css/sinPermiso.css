@@ -1,0 +1,8 @@
+.boton-redireccionar {
+    background-color: green;
+    color: white;
+}
+.boton-redireccionar:hover {
+    background-color: darkgreen;
+    color: white;
+}

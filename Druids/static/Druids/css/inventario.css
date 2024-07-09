@@ -1,5 +1,18 @@
 /*inventario*/
-.boton-volver img{
-    width: 2rem;
-    height: 2rem;
+.boton-registrar{
+    background-color: green;
+    color: white;
+}
+.boton-registrar:hover{
+    background-color: darkgreen;
+    color: white;
+}
+
+.boton-editar{
+    background-color: green;
+    color: white;
+}
+.boton-editar:hover{
+    background-color: darkgreen;
+    color: white;
 }

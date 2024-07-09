@@ -53,7 +53,7 @@ $(document).ready(function() {
 
 // Limitar el input de fecha de expiración a números y /
 $(document).ready(function() {
-    $('#Fecha-expiracion').on('input', function() {
+    $('.fecha-expiracion').on('input', function() {
         var value = $(this).val();
         // Permitir solo números y /
         value = value.replace(/[^0-9/]/g, '');
@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 // Limitar el imput de número de tarjeta a solo números y espacios
 $(document).ready(function() {
-    $('#Numero-tarjeta').on('input', function() {
+    $('.numero-tarjeta').on('input', function() {
         var value = $(this).val();
         // Permitir solo números y guiones
         value = value.replace(/[^0-9]/g, '');
@@ -117,32 +117,10 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $('#cvv').on('input', function() {
-        var value = $(this).val();
-        // Permitir solo números
-        value = value.replace(/[^0-9]/g, '');
-        
-        if (value.length > 3) {
-            value = value.substr(0, 3);
-        }
-        $(this).val(value);
-    });
-});
+
 
 $(document).ready(function() {
-    $('#codigo-promo').on('input', function() {
-        var value = $(this).val();
-        // Permitir solo letras y números, sin espacios
-        value = value.replace(/[^a-zA-Z0-9]/g, '');
-        //el valor se convierte en mayúsculas
-        value = value.toUpperCase();
-        $(this).val(value);
-    });
-});
-
-$(document).ready(function() {
-    $('#rut').on('input', function() {
+    $('.rut').on('input', function() {
         var value = $(this).val();
         // Permitir solo números
         value = value.replace(/[^0-9kK]/g, '');

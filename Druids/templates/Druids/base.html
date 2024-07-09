@@ -92,7 +92,7 @@
                 <button type="button" class="btn col">
                     <a href="{% url 'carrito' %}" class="carrito-link">
                         <img class="shopping-cart" src="{% static 'Druids/img/carrito-de-compras.png' %}">
-                        <!--si carrito item es mayot a ser-->
+                        <!--si carrito item es mayor a 0-->
                         {% if carrito_items_contador > 0 %}
                         <span class="badge bg-primary rounded-pill contador_carrito">{{ carrito_items_contador }}</span>
                         {% endif %}

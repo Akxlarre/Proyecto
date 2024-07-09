@@ -100,10 +100,10 @@
                 </li>
               </ul>
               {% if carrito_items %}
-              <button id="boton-pagar" type="button" class="btn btn-primary btn-block"><a href="{% url 'pago' %}"
+              <button id="boton-pagar" type="button" class="btn boton-pagar"><a href="{% url 'pago' %}"
                   class="text-white">Ir a pagar</a></button>
               {% else %}
-              <button id="boton-pagar" type="button" class="btn btn-primary btn-block" disabled>Ir a pagar</button>
+              <button id="boton-pagar" type="button" class="btn boton-pagar" disabled>Ir a pagar</button>
               {% endif %}
             </div>
           </div>

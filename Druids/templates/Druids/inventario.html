@@ -17,7 +17,7 @@
                                         <h4>Lista de productos</h4>
                                     </div>
                                     <div class="col-md-6 d-flex justify-content-end">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        <button type="button" class="btn boton-registrar" data-bs-toggle="modal"
                                             data-bs-target="#modalRegistrarProducto">
                                             + Registrar producto
                                         </button>
@@ -43,7 +43,7 @@
                                             <td>{{ producto.precio }}</td>
                                             <td>{{ producto.stock }}</td>
                                             <td>
-                                                <a href="{% url 'editarProducto' producto.id %}" class="btn btn-warning btn-sm">Editar</a>
+                                                <a href="{% url 'editarProducto' producto.id %}" class="btn boton-editar btn-sm">Editar</a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto" data-id="{{ producto.id }}" data-nombre="{{ producto.nombre}}">Eliminar</button>                                            </td>
                                         </tr>
                                         {% endfor %}

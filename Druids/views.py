@@ -22,7 +22,10 @@ def index(request):
     return render(request, 'Druids/index.html')
 
 def carrito(request):
-    carrito_items = CarritoItem.objects.all()
+    if request.user.is_authenticated:
+        carrito_items = CarritoItem.objects.filter(usuario=request.user) 
+    else:
+        carrito_items = CarritoItem.objects.all()
     total = sum(item.total_price for item in carrito_items)
     return render(request, 'Druids/carrito.html', {'carrito_items': carrito_items, 'total': total})
 
@@ -36,7 +39,10 @@ def agregar_al_carrito(request, producto_id):
         existenciaItem.cantidad += cantidad
         existenciaItem.save()
     else:
-        CarritoItem.objects.create(producto=producto, cantidad=cantidad)
+        if request.user.is_authenticated:
+            CarritoItem.objects.create(producto=producto, cantidad=cantidad, usuario=request.user)
+        else:
+            CarritoItem.objects.create(producto=producto, cantidad=cantidad)
 
     messages.success(request, 'ha sido agregado al carrito') 
     messages.success(request, print('ha sido agregado al carrito'))       
@@ -230,10 +236,22 @@ def desbloquearUsuario(request, id):
     return JsonResponse({'status': 'Usuario desbloqueado'})
 
 def pago(request):
-    carrito_items = CarritoItem.objects.all()
+    if request.user.is_authenticated:
+        carrito_items = CarritoItem.objects.filter(usuario=request.user)
+    else:
+        carrito_items = CarritoItem.objects.all()
     total = sum(item.total_price for item in carrito_items)
-    print(total)
-    form = PagoForm()
+
+    if request.user.is_authenticated:
+        usuario = Usuario.objects.get(usuario=request.user)
+        form = PagoForm(initial={
+            'nombre': usuario.nombre_usuario,
+            'email': usuario.correo,
+            'rut': usuario.rut,
+            'direccion_envio': usuario.direccion
+        })
+    else:
+        form = PagoForm()
 
     if request.method == 'POST':
         form = PagoForm(request.POST)
@@ -278,7 +296,7 @@ def pedidos(request):
     return render(request, 'Druids/pedidos.html', {'pedidos': pedidos})
 
 def detallePedido(request):
-    if request.method == 'GET' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    if request.method == 'GET' and request.headers.get('x-requested-with') == 'XMLHttpRequest': # Verifica que la petición sea AJAX
         pedido_id = request.GET.get('id')
         pedido = get_object_or_404(Pedido, id=pedido_id)
         detalles = DetallePedido.objects.filter(pedido=pedido)
@@ -296,6 +314,7 @@ def detallePedido(request):
             'nombre': pedido.nombre,
             'apellido': pedido.apellido,
             'fecha_pedido': pedido.fecha_pedido,
+            'direccion_envio': pedido.direccion_envio,
             'total': pedido.total,
             'estado': pedido.estado,
             'detalles': detalles_data

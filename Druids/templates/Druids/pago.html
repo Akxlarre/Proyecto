@@ -4,7 +4,6 @@
 {% block title %}pago{% endblock %}
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/pago.css' %}">
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyY3bxIioBHabCMOeT1HjfAFjC1kdA3eU&libraries=places&callback=initMap"></script>
 <main>
     <section>
         <div class="row">
@@ -45,7 +44,7 @@
                 <!-- Formulario de datos de pago -->
                 {{ form|crispy }}
                 <hr class="my-4">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">pagar</button>
+                <button class="w-100 btn boton-pagar" type="submit">Pagar</button>
             </form>
         </div>
     </div>

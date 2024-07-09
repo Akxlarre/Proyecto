@@ -10,6 +10,7 @@ $(document).ready(function() {
                 $('#modalVerPedido' + pedidoId + ' #pedido-id').text(data.id);
                 $('#modalVerPedido' + pedidoId + ' #pedido-cliente').text(data.nombre + ' ' + data.apellido);
                 $('#modalVerPedido' + pedidoId + ' #pedido-fecha').text(data.fecha_pedido);
+                $('#modalVerPedido' + pedidoId + ' #pedido-direccion').text(data.direccion_envio);
                 $('#modalVerPedido' + pedidoId + ' #pedido-total').text(data.total);
                 $('#modalVerPedido' + pedidoId + ' #pedido-estado').text(data.estado);
 

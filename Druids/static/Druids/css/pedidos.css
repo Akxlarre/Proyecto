@@ -35,3 +35,12 @@
 .pedido-section{
     min-height: 100vh;
 }
+
+.boton-completado{
+    background-color: green;
+    color: white;
+}
+.boton-completado:hover{
+    background-color: darkgreen;
+    color: white;
+}

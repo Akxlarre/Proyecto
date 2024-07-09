@@ -4,12 +4,12 @@
 {% block contenido %}
 <link rel="stylesheet" href="{% static 'Druids/css/historialCompra.css' %}">
     <main>
+        <section class="container-fluid mt-5">
+            <h1 class="text-center">Historial de Compras</h1>
+        </section>
         <!--Seccion de historial de compras-->
         <section class="container-fluid Historial">
             <div class="card m-3">
-                <div class="card-header d-flex justify-content-center">
-                    <h5>Historial de compras</h5>
-                </div>
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
@@ -46,8 +46,8 @@
                                         <p class="card-text">Total: ${{ pedido.total }}</p>
                                         <p class="card-text">Estado: {{ pedido.estado }}</p>
                                     </div>
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-primary btn-sm ver-detalles" data-pedido-id="{{ pedido.id }}" data-bs-toggle="modal" data-bs-target="#modalVerPedido{{pedido.id}}">Ver Factura</button>
+                                    <div class="text-center mb-3 mx-3">
+                                        <button type="button" class="btn btn-sm ver-detalles" data-pedido-id="{{ pedido.id }}" data-bs-toggle="modal" data-bs-target="#modalVerPedido{{pedido.id}}">Ver Factura</button>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +75,8 @@
                                             </ul>
                                         </div>
                                         <div class="modal-footer d-flex justify-content-between">
-                                            <button type="button" class="btn btn-primary fs-5" data-bs-dismiss="modal">Imprimir</button>
-                                            <button type="button" class="btn btn-danger fs-5" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn boton-imprimir" data-bs-dismiss="modal">Imprimir</button>
+                                            <button type="button" class="btn boton-cerrar" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>

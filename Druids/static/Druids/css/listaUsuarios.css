@@ -47,3 +47,11 @@
     }
     
 }
+.boton-agregar-usuario{
+    background-color: green;
+    color: white;
+}
+.boton-agregar-usuario:hover{
+    background-color: darkgreen;
+    color: white;
+}

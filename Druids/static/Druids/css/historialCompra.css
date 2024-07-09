@@ -11,3 +11,36 @@
 .Historial{
     min-height: 100vh;
 }
+
+.ver-detalles{
+    background-color: green;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+}
+.ver-detalles:hover{
+    background-color: darkgreen;
+    color: white;
+}
+
+.boton-imprimir{
+    background-color: green;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+}
+.boton-imprimir:hover{
+    background-color: darkgreen;
+    color: white;
+}
+
+.boton-cerrar{
+    background-color: rgb(199, 32, 32);;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+}
+.boton-cerrar:hover{
+    background-color: darkred;
+    color: white;
+}

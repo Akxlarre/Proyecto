@@ -37,6 +37,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">Pedido #{{ pedido.id }}</h5>
                             <p class="card-text">Cliente: {{ pedido.nombre }} {{ pedido.apellido }}</p>
+                            <p class="card-text">Dirección: {{ pedido.direccion_envio }}</p>
                             <p class="card-text">Fecha: {{ pedido.fecha_pedido }}</p>
                             <p class="card-text">Total: ${{ pedido.total }}</p>
                             <p class="card-text">Estado: {{ pedido.estado }}</p>
@@ -45,7 +46,7 @@
                                     data-pedido-id="{{ pedido.id }}" data-bs-toggle="modal"
                                     data-bs-target="#modalVerPedido{{pedido.id}}">Ver detalles</button>
                                 {% if pedido.estado != 'Completado' and pedido.estado != 'Cancelado' %}
-                                <button type="button" class="btn btn-success btn-sm cambiar-estado"
+                                <button type="button" class="btn btn-sm boton-completado cambiar-estado"
                                     data-pedido-id="{{ pedido.id }}" data-estado="Completado">Completar</button>
                                 <button type="button" class="btn btn-danger btn-sm cambiar-estado"
                                     data-pedido-id="{{ pedido.id }}" data-estado="Cancelado">Cancelar</button>
@@ -65,6 +66,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Cliente: <span id="pedido-cliente"></span></p>
+                                <p>Dirección: <span id="pedido-direccion"></span></p>
                                 <p>Fecha: <span id="pedido-fecha"></span></p>
                                 <p>Total: $<span id="pedido-total"></span></p>
                                 <p>Estado: <span id="pedido-estado"></span></p>
@@ -82,7 +84,7 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>

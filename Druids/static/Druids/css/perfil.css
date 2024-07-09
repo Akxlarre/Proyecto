@@ -35,3 +35,39 @@ h6 {
     font-size: 1rem;
     padding: 0.75rem 1.25rem;
 }
+
+.boton-editar{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: green;
+    color: white;
+}
+
+.boton-editar:hover{
+    background-color: darkgreen;
+    color: white;
+}
+
+.boton-guardar{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: green;
+    color: white;
+}
+
+.boton-guardar:hover{
+    background-color: darkgreen;
+    color: white;
+}
+
+.boton-eliminar{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: rgb(199, 32, 32);
+    color: white;
+}
+
+.boton-eliminar:hover{
+    background-color: darkred;
+    color: white;
+}

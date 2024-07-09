@@ -12,3 +12,11 @@
     height: 38rem;
 }
 
+.boton-volver-inicio{
+    background-color: green;
+    color: white;
+}
+.boton-volver-inicio:hover{
+    background-color: darkgreen;
+    color: white;
+}

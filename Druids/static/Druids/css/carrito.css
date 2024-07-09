@@ -41,3 +41,15 @@
 .carrito-section{
     min-height: 100vh;
 }
+
+.boton-pagar{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: green;
+    color: white;
+}
+
+.boton-pagar:hover{
+    background-color: darkgreen;
+    color: white;
+}

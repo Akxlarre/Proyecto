@@ -52,3 +52,15 @@
 .my-toast-container {
     margin-top: 7rem; /* Ajusta este valor según sea necesario */
 }
+
+.boton-comprar{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: green;
+    color: white;
+}
+
+.boton-comprar:hover{
+    color: white;
+    background-color: darkgreen;
+}
